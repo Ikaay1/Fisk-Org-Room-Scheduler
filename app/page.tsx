@@ -30,7 +30,7 @@ export default function Home() {
       const matchesFeatures =
         features.length === 0
           ? true
-          : features.every((f) => r.features.includes(f)); // require ALL selected features
+          : features.every((f) => r.features.includes(f));
       return matchesQ && matchesCap && matchesFeatures;
     });
   }, [dq, capacity, features]);
