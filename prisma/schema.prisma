@@ -9,15 +9,16 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  password String
+  id         String     @id @default(cuid())
+  email      String  @unique
+  password   String
+  isVerified Boolean @default(false)
 }
 
 model Rooms {
-  id   Int   @id @default(autoincrement())
-  building String
-  features String[]
-  roomNumber  String?
-  capacity  Int
+  id         String      @id @default(cuid())
+  building   String
+  features   String[]
+  roomNumber String?
+  capacity   Int
 }

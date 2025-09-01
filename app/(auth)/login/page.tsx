@@ -22,14 +22,11 @@ export default function LoginPage() {
     if (!canSubmit) return;
     setLoading(true);
     try {
-      // (Optionally call /api/auth/login to validate password here)
-      const res = await fetch("/api/auth/request-otp", {
+      await fetch("/api/auth/login", {
         method: "POST",
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, password }),
       });
-      const json = await res.json();
-      if (!json.ok) throw new Error(json.error || "Failed to send OTP");
-      r.push(`/otp?email=${encodeURIComponent(email)}`);
+      r.push("/");
     } catch (e: any) {
       setError(e?.message || "Could not send OTP");
     } finally {
