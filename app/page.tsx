@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
-async function getUserFromToken() {
+export async function getUserFromToken() {
   const token = (await cookies()).get("token")?.value;
   if (!token) return null;
 

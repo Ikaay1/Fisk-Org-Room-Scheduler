@@ -40,3 +40,23 @@ export function isRoomFree(roomId: string, start: string, end: string) {
   if (roomId === "r2" && day % 2 === 0) return false;
   return true;
 }
+
+export async function safeFetch(url: string, options?: RequestInit) {
+  const res = await fetch(url, options);
+
+  if (!res.ok) {
+    let errorBody;
+    try {
+      errorBody = await res.json();
+    } catch {
+      errorBody = { error: res.statusText };
+    }
+
+    const error = new Error(errorBody.error || "Request failed");
+    (error as any).status = res.status;
+    (error as any).body = errorBody;
+    throw error;
+  }
+
+  return res.json();
+}

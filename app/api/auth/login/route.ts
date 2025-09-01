@@ -29,14 +29,14 @@ export async function POST(req: Request) {
     );
   }
 
-  bcrypt.compare(body.password, user.password, function (err, result) {
-    if (!result) {
-      return NextResponse.json(
-        { ok: false, error: "Password is not correct" },
-        { status: 401 }
-      );
-    }
-  });
+  const isCorrect = await bcrypt.compare(body.password, user.password);
+
+  if (!isCorrect) {
+    return NextResponse.json(
+      { ok: false, error: "Password is not correct" },
+      { status: 401 }
+    );
+  }
 
   const token = await new SignJWT({ sub: user.id, email: user.email })
     .setProtectedHeader({ alg: "HS256" })

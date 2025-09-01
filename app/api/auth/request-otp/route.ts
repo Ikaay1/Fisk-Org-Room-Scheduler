@@ -17,11 +17,13 @@ export async function POST(req: Request) {
   const { email } = parsed.data;
 
   const user = await prisma.user.findUnique({
-    where: { email },
+    where: { email, isVerified: true },
     select: { isVerified: true },
   });
 
-  if (user && user.isVerified) {
+  console.log("user", user);
+
+  if (user) {
     return NextResponse.json(
       { ok: false, error: "User already exists" },
       { status: 401 }
@@ -36,13 +38,12 @@ export async function POST(req: Request) {
   }
 
   const saltRounds = 10;
+  const hash = await bcrypt.hash(body.password, saltRounds);
 
-  bcrypt.hash(body.password, saltRounds, async function (err, hash) {
-    await prisma.user.upsert({
-      where: { email },
-      create: { email, password: hash },
-      update: { password: hash },
-    });
+  await prisma.user.upsert({
+    where: { email },
+    create: { email, password: hash },
+    update: { password: hash },
   });
 
   const code = await issueOtp(email);
