@@ -1,7 +1,6 @@
-import Login from "@/components/Login";
-import React from "react";
-import { redirect } from "next/navigation";
 import { getUserFromToken } from "@/app/page";
+import Login from "@/components/Login";
+import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
   const user = await getUserFromToken();
@@ -9,6 +8,5 @@ export default async function LoginPage() {
   if (user) {
     redirect("/");
   }
-
-  <Login />;
+  return <Login />;
 }

@@ -127,12 +127,18 @@ exports.Prisma.UserScalarFieldEnum = {
   isVerified: 'isVerified'
 };
 
-exports.Prisma.RoomsScalarFieldEnum = {
+exports.Prisma.RoomScalarFieldEnum = {
   id: 'id',
   building: 'building',
   features: 'features',
   roomNumber: 'roomNumber',
-  capacity: 'capacity'
+  capacity: 'capacity',
+  isFree: 'isFree'
+};
+
+exports.Prisma.ClubScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
 };
 
 exports.Prisma.SortOrder = {
@@ -145,15 +151,11 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Rooms: 'Rooms'
+  Room: 'Room',
+  Club: 'Club'
 };
 
 /**

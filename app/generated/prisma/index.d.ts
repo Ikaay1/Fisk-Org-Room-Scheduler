@@ -19,10 +19,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Rooms
+ * Model Room
  * 
  */
-export type Rooms = $Result.DefaultSelection<Prisma.$RoomsPayload>
+export type Room = $Result.DefaultSelection<Prisma.$RoomPayload>
+/**
+ * Model Club
+ * 
+ */
+export type Club = $Result.DefaultSelection<Prisma.$ClubPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,14 +158,24 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.rooms`: Exposes CRUD operations for the **Rooms** model.
+   * `prisma.room`: Exposes CRUD operations for the **Room** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Rooms
-    * const rooms = await prisma.rooms.findMany()
+    * const rooms = await prisma.room.findMany()
     * ```
     */
-  get rooms(): Prisma.RoomsDelegate<ExtArgs, ClientOptions>;
+  get room(): Prisma.RoomDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.club`: Exposes CRUD operations for the **Club** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Clubs
+    * const clubs = await prisma.club.findMany()
+    * ```
+    */
+  get club(): Prisma.ClubDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -602,7 +617,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Rooms: 'Rooms'
+    Room: 'Room',
+    Club: 'Club'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -621,7 +637,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "rooms"
+      modelProps: "user" | "room" | "club"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -699,77 +715,151 @@ export namespace Prisma {
           }
         }
       }
-      Rooms: {
-        payload: Prisma.$RoomsPayload<ExtArgs>
-        fields: Prisma.RoomsFieldRefs
+      Room: {
+        payload: Prisma.$RoomPayload<ExtArgs>
+        fields: Prisma.RoomFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.RoomsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload> | null
+            args: Prisma.RoomFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.RoomsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           findFirst: {
-            args: Prisma.RoomsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload> | null
+            args: Prisma.RoomFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.RoomsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           findMany: {
-            args: Prisma.RoomsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>[]
+            args: Prisma.RoomFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>[]
           }
           create: {
-            args: Prisma.RoomsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           createMany: {
-            args: Prisma.RoomsCreateManyArgs<ExtArgs>
+            args: Prisma.RoomCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.RoomsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>[]
+            args: Prisma.RoomCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>[]
           }
           delete: {
-            args: Prisma.RoomsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           update: {
-            args: Prisma.RoomsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           deleteMany: {
-            args: Prisma.RoomsDeleteManyArgs<ExtArgs>
+            args: Prisma.RoomDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.RoomsUpdateManyArgs<ExtArgs>
+            args: Prisma.RoomUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.RoomsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>[]
+            args: Prisma.RoomUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>[]
           }
           upsert: {
-            args: Prisma.RoomsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomsPayload>
+            args: Prisma.RoomUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoomPayload>
           }
           aggregate: {
-            args: Prisma.RoomsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateRooms>
+            args: Prisma.RoomAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoom>
           }
           groupBy: {
-            args: Prisma.RoomsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<RoomsGroupByOutputType>[]
+            args: Prisma.RoomGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoomGroupByOutputType>[]
           }
           count: {
-            args: Prisma.RoomsCountArgs<ExtArgs>
-            result: $Utils.Optional<RoomsCountAggregateOutputType> | number
+            args: Prisma.RoomCountArgs<ExtArgs>
+            result: $Utils.Optional<RoomCountAggregateOutputType> | number
+          }
+        }
+      }
+      Club: {
+        payload: Prisma.$ClubPayload<ExtArgs>
+        fields: Prisma.ClubFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClubFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClubFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          findFirst: {
+            args: Prisma.ClubFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClubFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          findMany: {
+            args: Prisma.ClubFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>[]
+          }
+          create: {
+            args: Prisma.ClubCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          createMany: {
+            args: Prisma.ClubCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClubCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>[]
+          }
+          delete: {
+            args: Prisma.ClubDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          update: {
+            args: Prisma.ClubUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClubDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClubUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ClubUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>[]
+          }
+          upsert: {
+            args: Prisma.ClubUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClubPayload>
+          }
+          aggregate: {
+            args: Prisma.ClubAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClub>
+          }
+          groupBy: {
+            args: Prisma.ClubGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClubGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClubCountArgs<ExtArgs>
+            result: $Utils.Optional<ClubCountAggregateOutputType> | number
           }
         }
       }
@@ -866,7 +956,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    rooms?: RoomsOmit
+    room?: RoomOmit
+    club?: ClubOmit
   }
 
   /* Types for Logging */
@@ -1930,97 +2021,103 @@ export namespace Prisma {
 
 
   /**
-   * Model Rooms
+   * Model Room
    */
 
-  export type AggregateRooms = {
-    _count: RoomsCountAggregateOutputType | null
-    _avg: RoomsAvgAggregateOutputType | null
-    _sum: RoomsSumAggregateOutputType | null
-    _min: RoomsMinAggregateOutputType | null
-    _max: RoomsMaxAggregateOutputType | null
+  export type AggregateRoom = {
+    _count: RoomCountAggregateOutputType | null
+    _avg: RoomAvgAggregateOutputType | null
+    _sum: RoomSumAggregateOutputType | null
+    _min: RoomMinAggregateOutputType | null
+    _max: RoomMaxAggregateOutputType | null
   }
 
-  export type RoomsAvgAggregateOutputType = {
+  export type RoomAvgAggregateOutputType = {
     capacity: number | null
   }
 
-  export type RoomsSumAggregateOutputType = {
+  export type RoomSumAggregateOutputType = {
     capacity: number | null
   }
 
-  export type RoomsMinAggregateOutputType = {
+  export type RoomMinAggregateOutputType = {
     id: string | null
     building: string | null
     roomNumber: string | null
     capacity: number | null
+    isFree: boolean | null
   }
 
-  export type RoomsMaxAggregateOutputType = {
+  export type RoomMaxAggregateOutputType = {
     id: string | null
     building: string | null
     roomNumber: string | null
     capacity: number | null
+    isFree: boolean | null
   }
 
-  export type RoomsCountAggregateOutputType = {
+  export type RoomCountAggregateOutputType = {
     id: number
     building: number
     features: number
     roomNumber: number
     capacity: number
+    isFree: number
     _all: number
   }
 
 
-  export type RoomsAvgAggregateInputType = {
+  export type RoomAvgAggregateInputType = {
     capacity?: true
   }
 
-  export type RoomsSumAggregateInputType = {
+  export type RoomSumAggregateInputType = {
     capacity?: true
   }
 
-  export type RoomsMinAggregateInputType = {
+  export type RoomMinAggregateInputType = {
     id?: true
     building?: true
     roomNumber?: true
     capacity?: true
+    isFree?: true
   }
 
-  export type RoomsMaxAggregateInputType = {
+  export type RoomMaxAggregateInputType = {
     id?: true
     building?: true
     roomNumber?: true
     capacity?: true
+    isFree?: true
   }
 
-  export type RoomsCountAggregateInputType = {
+  export type RoomCountAggregateInputType = {
     id?: true
     building?: true
     features?: true
     roomNumber?: true
     capacity?: true
+    isFree?: true
     _all?: true
   }
 
-  export type RoomsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Rooms to aggregate.
+     * Filter which Room to aggregate.
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Rooms to fetch.
      */
-    orderBy?: RoomsOrderByWithRelationInput | RoomsOrderByWithRelationInput[]
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: RoomsWhereUniqueInput
+    cursor?: RoomWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2038,258 +2135,264 @@ export namespace Prisma {
      * 
      * Count returned Rooms
     **/
-    _count?: true | RoomsCountAggregateInputType
+    _count?: true | RoomCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: RoomsAvgAggregateInputType
+    _avg?: RoomAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: RoomsSumAggregateInputType
+    _sum?: RoomSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: RoomsMinAggregateInputType
+    _min?: RoomMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: RoomsMaxAggregateInputType
+    _max?: RoomMaxAggregateInputType
   }
 
-  export type GetRoomsAggregateType<T extends RoomsAggregateArgs> = {
-        [P in keyof T & keyof AggregateRooms]: P extends '_count' | 'count'
+  export type GetRoomAggregateType<T extends RoomAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoom]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateRooms[P]>
-      : GetScalarType<T[P], AggregateRooms[P]>
+        : GetScalarType<T[P], AggregateRoom[P]>
+      : GetScalarType<T[P], AggregateRoom[P]>
   }
 
 
 
 
-  export type RoomsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomsWhereInput
-    orderBy?: RoomsOrderByWithAggregationInput | RoomsOrderByWithAggregationInput[]
-    by: RoomsScalarFieldEnum[] | RoomsScalarFieldEnum
-    having?: RoomsScalarWhereWithAggregatesInput
+  export type RoomGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoomWhereInput
+    orderBy?: RoomOrderByWithAggregationInput | RoomOrderByWithAggregationInput[]
+    by: RoomScalarFieldEnum[] | RoomScalarFieldEnum
+    having?: RoomScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: RoomsCountAggregateInputType | true
-    _avg?: RoomsAvgAggregateInputType
-    _sum?: RoomsSumAggregateInputType
-    _min?: RoomsMinAggregateInputType
-    _max?: RoomsMaxAggregateInputType
+    _count?: RoomCountAggregateInputType | true
+    _avg?: RoomAvgAggregateInputType
+    _sum?: RoomSumAggregateInputType
+    _min?: RoomMinAggregateInputType
+    _max?: RoomMaxAggregateInputType
   }
 
-  export type RoomsGroupByOutputType = {
+  export type RoomGroupByOutputType = {
     id: string
     building: string
     features: string[]
-    roomNumber: string | null
+    roomNumber: string
     capacity: number
-    _count: RoomsCountAggregateOutputType | null
-    _avg: RoomsAvgAggregateOutputType | null
-    _sum: RoomsSumAggregateOutputType | null
-    _min: RoomsMinAggregateOutputType | null
-    _max: RoomsMaxAggregateOutputType | null
+    isFree: boolean
+    _count: RoomCountAggregateOutputType | null
+    _avg: RoomAvgAggregateOutputType | null
+    _sum: RoomSumAggregateOutputType | null
+    _min: RoomMinAggregateOutputType | null
+    _max: RoomMaxAggregateOutputType | null
   }
 
-  type GetRoomsGroupByPayload<T extends RoomsGroupByArgs> = Prisma.PrismaPromise<
+  type GetRoomGroupByPayload<T extends RoomGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<RoomsGroupByOutputType, T['by']> &
+      PickEnumerable<RoomGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof RoomsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof RoomGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], RoomsGroupByOutputType[P]>
-            : GetScalarType<T[P], RoomsGroupByOutputType[P]>
+              : GetScalarType<T[P], RoomGroupByOutputType[P]>
+            : GetScalarType<T[P], RoomGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type RoomsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RoomSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     building?: boolean
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-  }, ExtArgs["result"]["rooms"]>
+    isFree?: boolean
+  }, ExtArgs["result"]["room"]>
 
-  export type RoomsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RoomSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     building?: boolean
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-  }, ExtArgs["result"]["rooms"]>
+    isFree?: boolean
+  }, ExtArgs["result"]["room"]>
 
-  export type RoomsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RoomSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     building?: boolean
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-  }, ExtArgs["result"]["rooms"]>
+    isFree?: boolean
+  }, ExtArgs["result"]["room"]>
 
-  export type RoomsSelectScalar = {
+  export type RoomSelectScalar = {
     id?: boolean
     building?: boolean
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
+    isFree?: boolean
   }
 
-  export type RoomsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "building" | "features" | "roomNumber" | "capacity", ExtArgs["result"]["rooms"]>
+  export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "building" | "features" | "roomNumber" | "capacity" | "isFree", ExtArgs["result"]["room"]>
 
-  export type $RoomsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Rooms"
+  export type $RoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Room"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       building: string
       features: string[]
-      roomNumber: string | null
+      roomNumber: string
       capacity: number
-    }, ExtArgs["result"]["rooms"]>
+      isFree: boolean
+    }, ExtArgs["result"]["room"]>
     composites: {}
   }
 
-  type RoomsGetPayload<S extends boolean | null | undefined | RoomsDefaultArgs> = $Result.GetResult<Prisma.$RoomsPayload, S>
+  type RoomGetPayload<S extends boolean | null | undefined | RoomDefaultArgs> = $Result.GetResult<Prisma.$RoomPayload, S>
 
-  type RoomsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RoomsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RoomsCountAggregateInputType | true
+  type RoomCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoomFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoomCountAggregateInputType | true
     }
 
-  export interface RoomsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Rooms'], meta: { name: 'Rooms' } }
+  export interface RoomDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Room'], meta: { name: 'Room' } }
     /**
-     * Find zero or one Rooms that matches the filter.
-     * @param {RoomsFindUniqueArgs} args - Arguments to find a Rooms
+     * Find zero or one Room that matches the filter.
+     * @param {RoomFindUniqueArgs} args - Arguments to find a Room
      * @example
-     * // Get one Rooms
-     * const rooms = await prisma.rooms.findUnique({
+     * // Get one Room
+     * const room = await prisma.room.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends RoomsFindUniqueArgs>(args: SelectSubset<T, RoomsFindUniqueArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends RoomFindUniqueArgs>(args: SelectSubset<T, RoomFindUniqueArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Rooms that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Room that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {RoomsFindUniqueOrThrowArgs} args - Arguments to find a Rooms
+     * @param {RoomFindUniqueOrThrowArgs} args - Arguments to find a Room
      * @example
-     * // Get one Rooms
-     * const rooms = await prisma.rooms.findUniqueOrThrow({
+     * // Get one Room
+     * const room = await prisma.room.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends RoomsFindUniqueOrThrowArgs>(args: SelectSubset<T, RoomsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends RoomFindUniqueOrThrowArgs>(args: SelectSubset<T, RoomFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Rooms that matches the filter.
+     * Find the first Room that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsFindFirstArgs} args - Arguments to find a Rooms
+     * @param {RoomFindFirstArgs} args - Arguments to find a Room
      * @example
-     * // Get one Rooms
-     * const rooms = await prisma.rooms.findFirst({
+     * // Get one Room
+     * const room = await prisma.room.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends RoomsFindFirstArgs>(args?: SelectSubset<T, RoomsFindFirstArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends RoomFindFirstArgs>(args?: SelectSubset<T, RoomFindFirstArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Rooms that matches the filter or
+     * Find the first Room that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsFindFirstOrThrowArgs} args - Arguments to find a Rooms
+     * @param {RoomFindFirstOrThrowArgs} args - Arguments to find a Room
      * @example
-     * // Get one Rooms
-     * const rooms = await prisma.rooms.findFirstOrThrow({
+     * // Get one Room
+     * const room = await prisma.room.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends RoomsFindFirstOrThrowArgs>(args?: SelectSubset<T, RoomsFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends RoomFindFirstOrThrowArgs>(args?: SelectSubset<T, RoomFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Rooms that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {RoomFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Rooms
-     * const rooms = await prisma.rooms.findMany()
+     * const rooms = await prisma.room.findMany()
      * 
      * // Get first 10 Rooms
-     * const rooms = await prisma.rooms.findMany({ take: 10 })
+     * const rooms = await prisma.room.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const roomsWithIdOnly = await prisma.rooms.findMany({ select: { id: true } })
+     * const roomWithIdOnly = await prisma.room.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends RoomsFindManyArgs>(args?: SelectSubset<T, RoomsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends RoomFindManyArgs>(args?: SelectSubset<T, RoomFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Rooms.
-     * @param {RoomsCreateArgs} args - Arguments to create a Rooms.
+     * Create a Room.
+     * @param {RoomCreateArgs} args - Arguments to create a Room.
      * @example
-     * // Create one Rooms
-     * const Rooms = await prisma.rooms.create({
+     * // Create one Room
+     * const Room = await prisma.room.create({
      *   data: {
-     *     // ... data to create a Rooms
+     *     // ... data to create a Room
      *   }
      * })
      * 
      */
-    create<T extends RoomsCreateArgs>(args: SelectSubset<T, RoomsCreateArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends RoomCreateArgs>(args: SelectSubset<T, RoomCreateArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Rooms.
-     * @param {RoomsCreateManyArgs} args - Arguments to create many Rooms.
+     * @param {RoomCreateManyArgs} args - Arguments to create many Rooms.
      * @example
      * // Create many Rooms
-     * const rooms = await prisma.rooms.createMany({
+     * const room = await prisma.room.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends RoomsCreateManyArgs>(args?: SelectSubset<T, RoomsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends RoomCreateManyArgs>(args?: SelectSubset<T, RoomCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Rooms and returns the data saved in the database.
-     * @param {RoomsCreateManyAndReturnArgs} args - Arguments to create many Rooms.
+     * @param {RoomCreateManyAndReturnArgs} args - Arguments to create many Rooms.
      * @example
      * // Create many Rooms
-     * const rooms = await prisma.rooms.createManyAndReturn({
+     * const room = await prisma.room.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
      * // Create many Rooms and only return the `id`
-     * const roomsWithIdOnly = await prisma.rooms.createManyAndReturn({
+     * const roomWithIdOnly = await prisma.room.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2299,28 +2402,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends RoomsCreateManyAndReturnArgs>(args?: SelectSubset<T, RoomsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends RoomCreateManyAndReturnArgs>(args?: SelectSubset<T, RoomCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Rooms.
-     * @param {RoomsDeleteArgs} args - Arguments to delete one Rooms.
+     * Delete a Room.
+     * @param {RoomDeleteArgs} args - Arguments to delete one Room.
      * @example
-     * // Delete one Rooms
-     * const Rooms = await prisma.rooms.delete({
+     * // Delete one Room
+     * const Room = await prisma.room.delete({
      *   where: {
-     *     // ... filter to delete one Rooms
+     *     // ... filter to delete one Room
      *   }
      * })
      * 
      */
-    delete<T extends RoomsDeleteArgs>(args: SelectSubset<T, RoomsDeleteArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends RoomDeleteArgs>(args: SelectSubset<T, RoomDeleteArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Rooms.
-     * @param {RoomsUpdateArgs} args - Arguments to update one Rooms.
+     * Update one Room.
+     * @param {RoomUpdateArgs} args - Arguments to update one Room.
      * @example
-     * // Update one Rooms
-     * const rooms = await prisma.rooms.update({
+     * // Update one Room
+     * const room = await prisma.room.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2330,30 +2433,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends RoomsUpdateArgs>(args: SelectSubset<T, RoomsUpdateArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends RoomUpdateArgs>(args: SelectSubset<T, RoomUpdateArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Rooms.
-     * @param {RoomsDeleteManyArgs} args - Arguments to filter Rooms to delete.
+     * @param {RoomDeleteManyArgs} args - Arguments to filter Rooms to delete.
      * @example
      * // Delete a few Rooms
-     * const { count } = await prisma.rooms.deleteMany({
+     * const { count } = await prisma.room.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends RoomsDeleteManyArgs>(args?: SelectSubset<T, RoomsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends RoomDeleteManyArgs>(args?: SelectSubset<T, RoomDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Rooms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {RoomUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Rooms
-     * const rooms = await prisma.rooms.updateMany({
+     * const room = await prisma.room.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2363,14 +2466,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends RoomsUpdateManyArgs>(args: SelectSubset<T, RoomsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends RoomUpdateManyArgs>(args: SelectSubset<T, RoomUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Rooms and returns the data updated in the database.
-     * @param {RoomsUpdateManyAndReturnArgs} args - Arguments to update many Rooms.
+     * @param {RoomUpdateManyAndReturnArgs} args - Arguments to update many Rooms.
      * @example
      * // Update many Rooms
-     * const rooms = await prisma.rooms.updateManyAndReturn({
+     * const room = await prisma.room.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2380,7 +2483,7 @@ export namespace Prisma {
      * })
      * 
      * // Update zero or more Rooms and only return the `id`
-     * const roomsWithIdOnly = await prisma.rooms.updateManyAndReturn({
+     * const roomWithIdOnly = await prisma.room.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2393,56 +2496,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends RoomsUpdateManyAndReturnArgs>(args: SelectSubset<T, RoomsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends RoomUpdateManyAndReturnArgs>(args: SelectSubset<T, RoomUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Rooms.
-     * @param {RoomsUpsertArgs} args - Arguments to update or create a Rooms.
+     * Create or update one Room.
+     * @param {RoomUpsertArgs} args - Arguments to update or create a Room.
      * @example
-     * // Update or create a Rooms
-     * const rooms = await prisma.rooms.upsert({
+     * // Update or create a Room
+     * const room = await prisma.room.upsert({
      *   create: {
-     *     // ... data to create a Rooms
+     *     // ... data to create a Room
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Rooms we want to update
+     *     // ... the filter for the Room we want to update
      *   }
      * })
      */
-    upsert<T extends RoomsUpsertArgs>(args: SelectSubset<T, RoomsUpsertArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends RoomUpsertArgs>(args: SelectSubset<T, RoomUpsertArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Rooms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsCountArgs} args - Arguments to filter Rooms to count.
+     * @param {RoomCountArgs} args - Arguments to filter Rooms to count.
      * @example
      * // Count the number of Rooms
-     * const count = await prisma.rooms.count({
+     * const count = await prisma.room.count({
      *   where: {
      *     // ... the filter for the Rooms we want to count
      *   }
      * })
     **/
-    count<T extends RoomsCountArgs>(
-      args?: Subset<T, RoomsCountArgs>,
+    count<T extends RoomCountArgs>(
+      args?: Subset<T, RoomCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], RoomsCountAggregateOutputType>
+          : GetScalarType<T['select'], RoomCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Rooms.
+     * Allows you to perform aggregations operations on a Room.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {RoomAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2462,13 +2565,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends RoomsAggregateArgs>(args: Subset<T, RoomsAggregateArgs>): Prisma.PrismaPromise<GetRoomsAggregateType<T>>
+    aggregate<T extends RoomAggregateArgs>(args: Subset<T, RoomAggregateArgs>): Prisma.PrismaPromise<GetRoomAggregateType<T>>
 
     /**
-     * Group by Rooms.
+     * Group by Room.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomsGroupByArgs} args - Group by arguments.
+     * @param {RoomGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2483,14 +2586,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends RoomsGroupByArgs,
+      T extends RoomGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: RoomsGroupByArgs['orderBy'] }
-        : { orderBy?: RoomsGroupByArgs['orderBy'] },
+        ? { orderBy: RoomGroupByArgs['orderBy'] }
+        : { orderBy?: RoomGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2539,20 +2642,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, RoomsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoomsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, RoomGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoomGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Rooms model
+   * Fields of the Room model
    */
-  readonly fields: RoomsFieldRefs;
+  readonly fields: RoomFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Rooms.
+   * The delegate class that acts as a "Promise-like" for Room.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__RoomsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__RoomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2580,82 +2683,83 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Rooms model
+   * Fields of the Room model
    */
-  interface RoomsFieldRefs {
-    readonly id: FieldRef<"Rooms", 'String'>
-    readonly building: FieldRef<"Rooms", 'String'>
-    readonly features: FieldRef<"Rooms", 'String[]'>
-    readonly roomNumber: FieldRef<"Rooms", 'String'>
-    readonly capacity: FieldRef<"Rooms", 'Int'>
+  interface RoomFieldRefs {
+    readonly id: FieldRef<"Room", 'String'>
+    readonly building: FieldRef<"Room", 'String'>
+    readonly features: FieldRef<"Room", 'String[]'>
+    readonly roomNumber: FieldRef<"Room", 'String'>
+    readonly capacity: FieldRef<"Room", 'Int'>
+    readonly isFree: FieldRef<"Room", 'Boolean'>
   }
     
 
   // Custom InputTypes
   /**
-   * Rooms findUnique
+   * Room findUnique
    */
-  export type RoomsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * Filter, which Rooms to fetch.
+     * Filter, which Room to fetch.
      */
-    where: RoomsWhereUniqueInput
+    where: RoomWhereUniqueInput
   }
 
   /**
-   * Rooms findUniqueOrThrow
+   * Room findUniqueOrThrow
    */
-  export type RoomsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * Filter, which Rooms to fetch.
+     * Filter, which Room to fetch.
      */
-    where: RoomsWhereUniqueInput
+    where: RoomWhereUniqueInput
   }
 
   /**
-   * Rooms findFirst
+   * Room findFirst
    */
-  export type RoomsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * Filter, which Rooms to fetch.
+     * Filter, which Room to fetch.
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Rooms to fetch.
      */
-    orderBy?: RoomsOrderByWithRelationInput | RoomsOrderByWithRelationInput[]
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Rooms.
      */
-    cursor?: RoomsWhereUniqueInput
+    cursor?: RoomWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2673,37 +2777,37 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of Rooms.
      */
-    distinct?: RoomsScalarFieldEnum | RoomsScalarFieldEnum[]
+    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
   }
 
   /**
-   * Rooms findFirstOrThrow
+   * Room findFirstOrThrow
    */
-  export type RoomsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * Filter, which Rooms to fetch.
+     * Filter, which Room to fetch.
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Rooms to fetch.
      */
-    orderBy?: RoomsOrderByWithRelationInput | RoomsOrderByWithRelationInput[]
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Rooms.
      */
-    cursor?: RoomsWhereUniqueInput
+    cursor?: RoomWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2721,37 +2825,37 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of Rooms.
      */
-    distinct?: RoomsScalarFieldEnum | RoomsScalarFieldEnum[]
+    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
   }
 
   /**
-   * Rooms findMany
+   * Room findMany
    */
-  export type RoomsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
      * Filter, which Rooms to fetch.
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Rooms to fetch.
      */
-    orderBy?: RoomsOrderByWithRelationInput | RoomsOrderByWithRelationInput[]
+    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Rooms.
      */
-    cursor?: RoomsWhereUniqueInput
+    cursor?: RoomWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2764,91 +2868,91 @@ export namespace Prisma {
      * Skip the first `n` Rooms.
      */
     skip?: number
-    distinct?: RoomsScalarFieldEnum | RoomsScalarFieldEnum[]
+    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
   }
 
   /**
-   * Rooms create
+   * Room create
    */
-  export type RoomsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * The data needed to create a Rooms.
+     * The data needed to create a Room.
      */
-    data: XOR<RoomsCreateInput, RoomsUncheckedCreateInput>
+    data: XOR<RoomCreateInput, RoomUncheckedCreateInput>
   }
 
   /**
-   * Rooms createMany
+   * Room createMany
    */
-  export type RoomsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Rooms.
      */
-    data: RoomsCreateManyInput | RoomsCreateManyInput[]
+    data: RoomCreateManyInput | RoomCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Rooms createManyAndReturn
+   * Room createManyAndReturn
    */
-  export type RoomsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: RoomSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
      * The data used to create many Rooms.
      */
-    data: RoomsCreateManyInput | RoomsCreateManyInput[]
+    data: RoomCreateManyInput | RoomCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Rooms update
+   * Room update
    */
-  export type RoomsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * The data needed to update a Rooms.
+     * The data needed to update a Room.
      */
-    data: XOR<RoomsUpdateInput, RoomsUncheckedUpdateInput>
+    data: XOR<RoomUpdateInput, RoomUncheckedUpdateInput>
     /**
-     * Choose, which Rooms to update.
+     * Choose, which Room to update.
      */
-    where: RoomsWhereUniqueInput
+    where: RoomWhereUniqueInput
   }
 
   /**
-   * Rooms updateMany
+   * Room updateMany
    */
-  export type RoomsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Rooms.
      */
-    data: XOR<RoomsUpdateManyMutationInput, RoomsUncheckedUpdateManyInput>
+    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyInput>
     /**
      * Filter which Rooms to update
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * Limit how many Rooms to update.
      */
@@ -2856,25 +2960,25 @@ export namespace Prisma {
   }
 
   /**
-   * Rooms updateManyAndReturn
+   * Room updateManyAndReturn
    */
-  export type RoomsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: RoomSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
      * The data used to update Rooms.
      */
-    data: XOR<RoomsUpdateManyMutationInput, RoomsUncheckedUpdateManyInput>
+    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyInput>
     /**
      * Filter which Rooms to update
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * Limit how many Rooms to update.
      */
@@ -2882,57 +2986,57 @@ export namespace Prisma {
   }
 
   /**
-   * Rooms upsert
+   * Room upsert
    */
-  export type RoomsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * The filter to search for the Rooms to update in case it exists.
+     * The filter to search for the Room to update in case it exists.
      */
-    where: RoomsWhereUniqueInput
+    where: RoomWhereUniqueInput
     /**
-     * In case the Rooms found by the `where` argument doesn't exist, create a new Rooms with this data.
+     * In case the Room found by the `where` argument doesn't exist, create a new Room with this data.
      */
-    create: XOR<RoomsCreateInput, RoomsUncheckedCreateInput>
+    create: XOR<RoomCreateInput, RoomUncheckedCreateInput>
     /**
-     * In case the Rooms was found with the provided `where` argument, update it with this data.
+     * In case the Room was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<RoomsUpdateInput, RoomsUncheckedUpdateInput>
+    update: XOR<RoomUpdateInput, RoomUncheckedUpdateInput>
   }
 
   /**
-   * Rooms delete
+   * Room delete
    */
-  export type RoomsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
     /**
-     * Filter which Rooms to delete.
+     * Filter which Room to delete.
      */
-    where: RoomsWhereUniqueInput
+    where: RoomWhereUniqueInput
   }
 
   /**
-   * Rooms deleteMany
+   * Room deleteMany
    */
-  export type RoomsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Rooms to delete
      */
-    where?: RoomsWhereInput
+    where?: RoomWhereInput
     /**
      * Limit how many Rooms to delete.
      */
@@ -2940,17 +3044,973 @@ export namespace Prisma {
   }
 
   /**
-   * Rooms without action
+   * Room without action
    */
-  export type RoomsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Rooms
+     * Select specific fields to fetch from the Room
      */
-    select?: RoomsSelect<ExtArgs> | null
+    select?: RoomSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Rooms
+     * Omit specific fields from the Room
      */
-    omit?: RoomsOmit<ExtArgs> | null
+    omit?: RoomOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Club
+   */
+
+  export type AggregateClub = {
+    _count: ClubCountAggregateOutputType | null
+    _min: ClubMinAggregateOutputType | null
+    _max: ClubMaxAggregateOutputType | null
+  }
+
+  export type ClubMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type ClubMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type ClubCountAggregateOutputType = {
+    id: number
+    name: number
+    _all: number
+  }
+
+
+  export type ClubMinAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type ClubMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type ClubCountAggregateInputType = {
+    id?: true
+    name?: true
+    _all?: true
+  }
+
+  export type ClubAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Club to aggregate.
+     */
+    where?: ClubWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clubs to fetch.
+     */
+    orderBy?: ClubOrderByWithRelationInput | ClubOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClubWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clubs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clubs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Clubs
+    **/
+    _count?: true | ClubCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClubMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClubMaxAggregateInputType
+  }
+
+  export type GetClubAggregateType<T extends ClubAggregateArgs> = {
+        [P in keyof T & keyof AggregateClub]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClub[P]>
+      : GetScalarType<T[P], AggregateClub[P]>
+  }
+
+
+
+
+  export type ClubGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClubWhereInput
+    orderBy?: ClubOrderByWithAggregationInput | ClubOrderByWithAggregationInput[]
+    by: ClubScalarFieldEnum[] | ClubScalarFieldEnum
+    having?: ClubScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClubCountAggregateInputType | true
+    _min?: ClubMinAggregateInputType
+    _max?: ClubMaxAggregateInputType
+  }
+
+  export type ClubGroupByOutputType = {
+    id: string
+    name: string
+    _count: ClubCountAggregateOutputType | null
+    _min: ClubMinAggregateOutputType | null
+    _max: ClubMaxAggregateOutputType | null
+  }
+
+  type GetClubGroupByPayload<T extends ClubGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClubGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClubGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClubGroupByOutputType[P]>
+            : GetScalarType<T[P], ClubGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClubSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["club"]>
+
+  export type ClubSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["club"]>
+
+  export type ClubSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["club"]>
+
+  export type ClubSelectScalar = {
+    id?: boolean
+    name?: boolean
+  }
+
+  export type ClubOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["club"]>
+
+  export type $ClubPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Club"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+    }, ExtArgs["result"]["club"]>
+    composites: {}
+  }
+
+  type ClubGetPayload<S extends boolean | null | undefined | ClubDefaultArgs> = $Result.GetResult<Prisma.$ClubPayload, S>
+
+  type ClubCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClubFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClubCountAggregateInputType | true
+    }
+
+  export interface ClubDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Club'], meta: { name: 'Club' } }
+    /**
+     * Find zero or one Club that matches the filter.
+     * @param {ClubFindUniqueArgs} args - Arguments to find a Club
+     * @example
+     * // Get one Club
+     * const club = await prisma.club.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClubFindUniqueArgs>(args: SelectSubset<T, ClubFindUniqueArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Club that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClubFindUniqueOrThrowArgs} args - Arguments to find a Club
+     * @example
+     * // Get one Club
+     * const club = await prisma.club.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClubFindUniqueOrThrowArgs>(args: SelectSubset<T, ClubFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Club that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubFindFirstArgs} args - Arguments to find a Club
+     * @example
+     * // Get one Club
+     * const club = await prisma.club.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClubFindFirstArgs>(args?: SelectSubset<T, ClubFindFirstArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Club that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubFindFirstOrThrowArgs} args - Arguments to find a Club
+     * @example
+     * // Get one Club
+     * const club = await prisma.club.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClubFindFirstOrThrowArgs>(args?: SelectSubset<T, ClubFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Clubs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Clubs
+     * const clubs = await prisma.club.findMany()
+     * 
+     * // Get first 10 Clubs
+     * const clubs = await prisma.club.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const clubWithIdOnly = await prisma.club.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClubFindManyArgs>(args?: SelectSubset<T, ClubFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Club.
+     * @param {ClubCreateArgs} args - Arguments to create a Club.
+     * @example
+     * // Create one Club
+     * const Club = await prisma.club.create({
+     *   data: {
+     *     // ... data to create a Club
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClubCreateArgs>(args: SelectSubset<T, ClubCreateArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Clubs.
+     * @param {ClubCreateManyArgs} args - Arguments to create many Clubs.
+     * @example
+     * // Create many Clubs
+     * const club = await prisma.club.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClubCreateManyArgs>(args?: SelectSubset<T, ClubCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Clubs and returns the data saved in the database.
+     * @param {ClubCreateManyAndReturnArgs} args - Arguments to create many Clubs.
+     * @example
+     * // Create many Clubs
+     * const club = await prisma.club.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Clubs and only return the `id`
+     * const clubWithIdOnly = await prisma.club.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClubCreateManyAndReturnArgs>(args?: SelectSubset<T, ClubCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Club.
+     * @param {ClubDeleteArgs} args - Arguments to delete one Club.
+     * @example
+     * // Delete one Club
+     * const Club = await prisma.club.delete({
+     *   where: {
+     *     // ... filter to delete one Club
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClubDeleteArgs>(args: SelectSubset<T, ClubDeleteArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Club.
+     * @param {ClubUpdateArgs} args - Arguments to update one Club.
+     * @example
+     * // Update one Club
+     * const club = await prisma.club.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClubUpdateArgs>(args: SelectSubset<T, ClubUpdateArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Clubs.
+     * @param {ClubDeleteManyArgs} args - Arguments to filter Clubs to delete.
+     * @example
+     * // Delete a few Clubs
+     * const { count } = await prisma.club.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClubDeleteManyArgs>(args?: SelectSubset<T, ClubDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Clubs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Clubs
+     * const club = await prisma.club.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClubUpdateManyArgs>(args: SelectSubset<T, ClubUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Clubs and returns the data updated in the database.
+     * @param {ClubUpdateManyAndReturnArgs} args - Arguments to update many Clubs.
+     * @example
+     * // Update many Clubs
+     * const club = await prisma.club.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Clubs and only return the `id`
+     * const clubWithIdOnly = await prisma.club.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ClubUpdateManyAndReturnArgs>(args: SelectSubset<T, ClubUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Club.
+     * @param {ClubUpsertArgs} args - Arguments to update or create a Club.
+     * @example
+     * // Update or create a Club
+     * const club = await prisma.club.upsert({
+     *   create: {
+     *     // ... data to create a Club
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Club we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClubUpsertArgs>(args: SelectSubset<T, ClubUpsertArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Clubs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubCountArgs} args - Arguments to filter Clubs to count.
+     * @example
+     * // Count the number of Clubs
+     * const count = await prisma.club.count({
+     *   where: {
+     *     // ... the filter for the Clubs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClubCountArgs>(
+      args?: Subset<T, ClubCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClubCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Club.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClubAggregateArgs>(args: Subset<T, ClubAggregateArgs>): Prisma.PrismaPromise<GetClubAggregateType<T>>
+
+    /**
+     * Group by Club.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClubGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClubGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClubGroupByArgs['orderBy'] }
+        : { orderBy?: ClubGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClubGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClubGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Club model
+   */
+  readonly fields: ClubFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Club.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClubClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Club model
+   */
+  interface ClubFieldRefs {
+    readonly id: FieldRef<"Club", 'String'>
+    readonly name: FieldRef<"Club", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Club findUnique
+   */
+  export type ClubFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter, which Club to fetch.
+     */
+    where: ClubWhereUniqueInput
+  }
+
+  /**
+   * Club findUniqueOrThrow
+   */
+  export type ClubFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter, which Club to fetch.
+     */
+    where: ClubWhereUniqueInput
+  }
+
+  /**
+   * Club findFirst
+   */
+  export type ClubFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter, which Club to fetch.
+     */
+    where?: ClubWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clubs to fetch.
+     */
+    orderBy?: ClubOrderByWithRelationInput | ClubOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Clubs.
+     */
+    cursor?: ClubWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clubs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clubs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Clubs.
+     */
+    distinct?: ClubScalarFieldEnum | ClubScalarFieldEnum[]
+  }
+
+  /**
+   * Club findFirstOrThrow
+   */
+  export type ClubFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter, which Club to fetch.
+     */
+    where?: ClubWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clubs to fetch.
+     */
+    orderBy?: ClubOrderByWithRelationInput | ClubOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Clubs.
+     */
+    cursor?: ClubWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clubs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clubs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Clubs.
+     */
+    distinct?: ClubScalarFieldEnum | ClubScalarFieldEnum[]
+  }
+
+  /**
+   * Club findMany
+   */
+  export type ClubFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter, which Clubs to fetch.
+     */
+    where?: ClubWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clubs to fetch.
+     */
+    orderBy?: ClubOrderByWithRelationInput | ClubOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Clubs.
+     */
+    cursor?: ClubWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clubs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clubs.
+     */
+    skip?: number
+    distinct?: ClubScalarFieldEnum | ClubScalarFieldEnum[]
+  }
+
+  /**
+   * Club create
+   */
+  export type ClubCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Club.
+     */
+    data: XOR<ClubCreateInput, ClubUncheckedCreateInput>
+  }
+
+  /**
+   * Club createMany
+   */
+  export type ClubCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Clubs.
+     */
+    data: ClubCreateManyInput | ClubCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Club createManyAndReturn
+   */
+  export type ClubCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * The data used to create many Clubs.
+     */
+    data: ClubCreateManyInput | ClubCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Club update
+   */
+  export type ClubUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Club.
+     */
+    data: XOR<ClubUpdateInput, ClubUncheckedUpdateInput>
+    /**
+     * Choose, which Club to update.
+     */
+    where: ClubWhereUniqueInput
+  }
+
+  /**
+   * Club updateMany
+   */
+  export type ClubUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Clubs.
+     */
+    data: XOR<ClubUpdateManyMutationInput, ClubUncheckedUpdateManyInput>
+    /**
+     * Filter which Clubs to update
+     */
+    where?: ClubWhereInput
+    /**
+     * Limit how many Clubs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Club updateManyAndReturn
+   */
+  export type ClubUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * The data used to update Clubs.
+     */
+    data: XOR<ClubUpdateManyMutationInput, ClubUncheckedUpdateManyInput>
+    /**
+     * Filter which Clubs to update
+     */
+    where?: ClubWhereInput
+    /**
+     * Limit how many Clubs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Club upsert
+   */
+  export type ClubUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Club to update in case it exists.
+     */
+    where: ClubWhereUniqueInput
+    /**
+     * In case the Club found by the `where` argument doesn't exist, create a new Club with this data.
+     */
+    create: XOR<ClubCreateInput, ClubUncheckedCreateInput>
+    /**
+     * In case the Club was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClubUpdateInput, ClubUncheckedUpdateInput>
+  }
+
+  /**
+   * Club delete
+   */
+  export type ClubDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
+    /**
+     * Filter which Club to delete.
+     */
+    where: ClubWhereUniqueInput
+  }
+
+  /**
+   * Club deleteMany
+   */
+  export type ClubDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Clubs to delete
+     */
+    where?: ClubWhereInput
+    /**
+     * Limit how many Clubs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Club without action
+   */
+  export type ClubDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Club
+     */
+    select?: ClubSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Club
+     */
+    omit?: ClubOmit<ExtArgs> | null
   }
 
 
@@ -2978,15 +4038,24 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const RoomsScalarFieldEnum: {
+  export const RoomScalarFieldEnum: {
     id: 'id',
     building: 'building',
     features: 'features',
     roomNumber: 'roomNumber',
-    capacity: 'capacity'
+    capacity: 'capacity',
+    isFree: 'isFree'
   };
 
-  export type RoomsScalarFieldEnum = (typeof RoomsScalarFieldEnum)[keyof typeof RoomsScalarFieldEnum]
+  export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+  export const ClubScalarFieldEnum: {
+    id: 'id',
+    name: 'name'
+  };
+
+  export type ClubScalarFieldEnum = (typeof ClubScalarFieldEnum)[keyof typeof ClubScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3003,14 +4072,6 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -3117,58 +4178,101 @@ export namespace Prisma {
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
-  export type RoomsWhereInput = {
-    AND?: RoomsWhereInput | RoomsWhereInput[]
-    OR?: RoomsWhereInput[]
-    NOT?: RoomsWhereInput | RoomsWhereInput[]
-    id?: StringFilter<"Rooms"> | string
-    building?: StringFilter<"Rooms"> | string
-    features?: StringNullableListFilter<"Rooms">
-    roomNumber?: StringNullableFilter<"Rooms"> | string | null
-    capacity?: IntFilter<"Rooms"> | number
+  export type RoomWhereInput = {
+    AND?: RoomWhereInput | RoomWhereInput[]
+    OR?: RoomWhereInput[]
+    NOT?: RoomWhereInput | RoomWhereInput[]
+    id?: StringFilter<"Room"> | string
+    building?: StringFilter<"Room"> | string
+    features?: StringNullableListFilter<"Room">
+    roomNumber?: StringFilter<"Room"> | string
+    capacity?: IntFilter<"Room"> | number
+    isFree?: BoolFilter<"Room"> | boolean
   }
 
-  export type RoomsOrderByWithRelationInput = {
+  export type RoomOrderByWithRelationInput = {
     id?: SortOrder
     building?: SortOrder
     features?: SortOrder
-    roomNumber?: SortOrderInput | SortOrder
+    roomNumber?: SortOrder
     capacity?: SortOrder
+    isFree?: SortOrder
   }
 
-  export type RoomsWhereUniqueInput = Prisma.AtLeast<{
+  export type RoomWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: RoomsWhereInput | RoomsWhereInput[]
-    OR?: RoomsWhereInput[]
-    NOT?: RoomsWhereInput | RoomsWhereInput[]
-    building?: StringFilter<"Rooms"> | string
-    features?: StringNullableListFilter<"Rooms">
-    roomNumber?: StringNullableFilter<"Rooms"> | string | null
-    capacity?: IntFilter<"Rooms"> | number
-  }, "id">
+    building_roomNumber?: RoomBuilding_roomNumberCompoundUniqueInput
+    AND?: RoomWhereInput | RoomWhereInput[]
+    OR?: RoomWhereInput[]
+    NOT?: RoomWhereInput | RoomWhereInput[]
+    building?: StringFilter<"Room"> | string
+    features?: StringNullableListFilter<"Room">
+    roomNumber?: StringFilter<"Room"> | string
+    capacity?: IntFilter<"Room"> | number
+    isFree?: BoolFilter<"Room"> | boolean
+  }, "id" | "building_roomNumber">
 
-  export type RoomsOrderByWithAggregationInput = {
+  export type RoomOrderByWithAggregationInput = {
     id?: SortOrder
     building?: SortOrder
     features?: SortOrder
-    roomNumber?: SortOrderInput | SortOrder
+    roomNumber?: SortOrder
     capacity?: SortOrder
-    _count?: RoomsCountOrderByAggregateInput
-    _avg?: RoomsAvgOrderByAggregateInput
-    _max?: RoomsMaxOrderByAggregateInput
-    _min?: RoomsMinOrderByAggregateInput
-    _sum?: RoomsSumOrderByAggregateInput
+    isFree?: SortOrder
+    _count?: RoomCountOrderByAggregateInput
+    _avg?: RoomAvgOrderByAggregateInput
+    _max?: RoomMaxOrderByAggregateInput
+    _min?: RoomMinOrderByAggregateInput
+    _sum?: RoomSumOrderByAggregateInput
   }
 
-  export type RoomsScalarWhereWithAggregatesInput = {
-    AND?: RoomsScalarWhereWithAggregatesInput | RoomsScalarWhereWithAggregatesInput[]
-    OR?: RoomsScalarWhereWithAggregatesInput[]
-    NOT?: RoomsScalarWhereWithAggregatesInput | RoomsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Rooms"> | string
-    building?: StringWithAggregatesFilter<"Rooms"> | string
-    features?: StringNullableListFilter<"Rooms">
-    roomNumber?: StringNullableWithAggregatesFilter<"Rooms"> | string | null
-    capacity?: IntWithAggregatesFilter<"Rooms"> | number
+  export type RoomScalarWhereWithAggregatesInput = {
+    AND?: RoomScalarWhereWithAggregatesInput | RoomScalarWhereWithAggregatesInput[]
+    OR?: RoomScalarWhereWithAggregatesInput[]
+    NOT?: RoomScalarWhereWithAggregatesInput | RoomScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Room"> | string
+    building?: StringWithAggregatesFilter<"Room"> | string
+    features?: StringNullableListFilter<"Room">
+    roomNumber?: StringWithAggregatesFilter<"Room"> | string
+    capacity?: IntWithAggregatesFilter<"Room"> | number
+    isFree?: BoolWithAggregatesFilter<"Room"> | boolean
+  }
+
+  export type ClubWhereInput = {
+    AND?: ClubWhereInput | ClubWhereInput[]
+    OR?: ClubWhereInput[]
+    NOT?: ClubWhereInput | ClubWhereInput[]
+    id?: StringFilter<"Club"> | string
+    name?: StringFilter<"Club"> | string
+  }
+
+  export type ClubOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ClubWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: ClubWhereInput | ClubWhereInput[]
+    OR?: ClubWhereInput[]
+    NOT?: ClubWhereInput | ClubWhereInput[]
+  }, "id" | "name">
+
+  export type ClubOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    _count?: ClubCountOrderByAggregateInput
+    _max?: ClubMaxOrderByAggregateInput
+    _min?: ClubMinOrderByAggregateInput
+  }
+
+  export type ClubScalarWhereWithAggregatesInput = {
+    AND?: ClubScalarWhereWithAggregatesInput | ClubScalarWhereWithAggregatesInput[]
+    OR?: ClubScalarWhereWithAggregatesInput[]
+    NOT?: ClubScalarWhereWithAggregatesInput | ClubScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Club"> | string
+    name?: StringWithAggregatesFilter<"Club"> | string
   }
 
   export type UserCreateInput = {
@@ -3220,60 +4324,102 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type RoomsCreateInput = {
+  export type RoomCreateInput = {
     id?: string
     building: string
-    features?: RoomsCreatefeaturesInput | string[]
-    roomNumber?: string | null
+    features?: RoomCreatefeaturesInput | string[]
+    roomNumber?: string
     capacity: number
+    isFree?: boolean
   }
 
-  export type RoomsUncheckedCreateInput = {
+  export type RoomUncheckedCreateInput = {
     id?: string
     building: string
-    features?: RoomsCreatefeaturesInput | string[]
-    roomNumber?: string | null
+    features?: RoomCreatefeaturesInput | string[]
+    roomNumber?: string
     capacity: number
+    isFree?: boolean
   }
 
-  export type RoomsUpdateInput = {
+  export type RoomUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     building?: StringFieldUpdateOperationsInput | string
-    features?: RoomsUpdatefeaturesInput | string[]
-    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: RoomUpdatefeaturesInput | string[]
+    roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type RoomsUncheckedUpdateInput = {
+  export type RoomUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     building?: StringFieldUpdateOperationsInput | string
-    features?: RoomsUpdatefeaturesInput | string[]
-    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: RoomUpdatefeaturesInput | string[]
+    roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type RoomsCreateManyInput = {
+  export type RoomCreateManyInput = {
     id?: string
     building: string
-    features?: RoomsCreatefeaturesInput | string[]
-    roomNumber?: string | null
+    features?: RoomCreatefeaturesInput | string[]
+    roomNumber?: string
     capacity: number
+    isFree?: boolean
   }
 
-  export type RoomsUpdateManyMutationInput = {
+  export type RoomUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     building?: StringFieldUpdateOperationsInput | string
-    features?: RoomsUpdatefeaturesInput | string[]
-    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: RoomUpdatefeaturesInput | string[]
+    roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type RoomsUncheckedUpdateManyInput = {
+  export type RoomUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     building?: StringFieldUpdateOperationsInput | string
-    features?: RoomsUpdatefeaturesInput | string[]
-    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    features?: RoomUpdatefeaturesInput | string[]
+    roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isFree?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ClubCreateInput = {
+    id?: string
+    name: string
+  }
+
+  export type ClubUncheckedCreateInput = {
+    id?: string
+    name: string
+  }
+
+  export type ClubUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClubUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClubCreateManyInput = {
+    id?: string
+    name: string
+  }
+
+  export type ClubUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClubUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3351,21 +4497,6 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -3377,57 +4508,42 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
+  export type RoomBuilding_roomNumberCompoundUniqueInput = {
+    building: string
+    roomNumber: string
   }
 
-  export type RoomsCountOrderByAggregateInput = {
+  export type RoomCountOrderByAggregateInput = {
     id?: SortOrder
     building?: SortOrder
     features?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
+    isFree?: SortOrder
   }
 
-  export type RoomsAvgOrderByAggregateInput = {
+  export type RoomAvgOrderByAggregateInput = {
     capacity?: SortOrder
   }
 
-  export type RoomsMaxOrderByAggregateInput = {
+  export type RoomMaxOrderByAggregateInput = {
     id?: SortOrder
     building?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
+    isFree?: SortOrder
   }
 
-  export type RoomsMinOrderByAggregateInput = {
+  export type RoomMinOrderByAggregateInput = {
     id?: SortOrder
     building?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
+    isFree?: SortOrder
   }
 
-  export type RoomsSumOrderByAggregateInput = {
+  export type RoomSumOrderByAggregateInput = {
     capacity?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -3446,6 +4562,21 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type ClubCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ClubMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ClubMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3454,17 +4585,13 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type RoomsCreatefeaturesInput = {
+  export type RoomCreatefeaturesInput = {
     set: string[]
   }
 
-  export type RoomsUpdatefeaturesInput = {
+  export type RoomUpdatefeaturesInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3528,48 +4655,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {

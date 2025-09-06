@@ -34,13 +34,6 @@ export function fmtTimeRange(startAt: string, endAt: string) {
   }
 }
 
-export function isRoomFree(roomId: string, start: string, end: string) {
-  const day = new Date(start).getDate();
-  // Simple deterministic mock: even-numbered days block r2 in the afternoon
-  if (roomId === "r2" && day % 2 === 0) return false;
-  return true;
-}
-
 export async function safeFetch(url: string, options?: RequestInit) {
   const res = await fetch(url, options);
 

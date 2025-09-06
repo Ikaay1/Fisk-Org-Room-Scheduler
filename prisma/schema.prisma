@@ -15,10 +15,18 @@ model User {
   isVerified Boolean @default(false)
 }
 
-model Rooms {
+model Room {
   id         String      @id @default(cuid())
   building   String
   features   String[]
-  roomNumber String?
+  roomNumber String @default("")
   capacity   Int
+  isFree Boolean @default(true)
+
+  @@unique([building, roomNumber], name: "building_roomNumber")
+}
+
+model Club {
+  id         String      @id @default(cuid())
+  name      String  @unique
 }

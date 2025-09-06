@@ -2,30 +2,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Clock, Users, X } from "lucide-react";
 import { CapacityBar, FeaturePill } from "./Utilities";
-import { fmtTimeRange, isRoomFree } from "@/helpers/utils";
+import { fmtTimeRange } from "@/helpers/utils";
 import BookRoomButton from "./BookRoomButton";
 import { motion } from "framer-motion";
-import { Room } from "@/helpers/config";
+import { Club, Room } from "@/helpers/config";
 
 function RoomCard({
   room,
   startAt,
   endAt,
   capacity,
+  clubs,
 }: {
   room: Room;
   startAt: string;
   endAt: string;
   capacity: number;
+  clubs: Club[];
 }) {
-  const free = isRoomFree(room.id, startAt, endAt);
+  const free = room.isFree;
+  console.log(room);
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
       <Card className="h-full">
         <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center justify-between">
             <span>
-              {room.building} · {room.name}
+              {room.building} · {room.roomNumber}
             </span>
             <Badge variant={free ? "default" : "destructive"} className="gap-1">
               {free ? (
@@ -60,6 +63,7 @@ function RoomCard({
               startAt={startAt}
               endAt={endAt}
               capacity={capacity}
+              clubs={clubs}
             />
           </div>
         </CardContent>

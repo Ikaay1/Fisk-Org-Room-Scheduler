@@ -13,18 +13,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { DialogFooter } from "@/components/ui/dialog";
-import { CLUBS, EventDraft } from "@/helpers/config";
+import { Club, CLUBS, EventDraft } from "@/helpers/config";
 
 function EventForm({
   onSubmit,
   startAt,
   endAt,
   capacity,
+  clubs,
 }: {
   onSubmit: (draft: EventDraft) => void;
   startAt: string;
   endAt: string;
   capacity: number;
+  clubs: Club[];
 }) {
   const [title, setTitle] = useState("");
   const [clubId, setClubId] = useState(CLIBS_SAFE()[0]?.id ?? "");

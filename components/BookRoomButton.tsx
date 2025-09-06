@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import EventForm from "./EventForm";
+import { Club } from "@/helpers/config";
 
 function BookRoomButton({
   roomId,
@@ -18,12 +19,14 @@ function BookRoomButton({
   endAt,
   disabled,
   capacity,
+  clubs,
 }: {
   roomId: string;
   startAt: string;
   endAt: string;
   disabled?: boolean;
   capacity: number;
+  clubs: Club[];
 }) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -50,6 +53,7 @@ function BookRoomButton({
           startAt={startAt}
           endAt={endAt}
           capacity={capacity}
+          clubs={clubs}
         />
       </DialogContent>
     </Dialog>
