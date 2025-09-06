@@ -59,13 +59,15 @@ export default async function HomePage() {
   const rooms = await getRooms();
   const clubs = await getClubs();
 
+  console.log(clubs);
+
   if (!user) {
     redirect("/login");
   }
 
   return (
     <AppShell user={user}>
-      <Home rooms={rooms} clubs={clubs} />
+      <Home user={user} rooms={rooms} clubs={clubs} />
     </AppShell>
   );
 }

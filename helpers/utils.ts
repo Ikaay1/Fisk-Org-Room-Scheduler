@@ -1,9 +1,3 @@
-import { CLUBS } from "./config";
-
-export function CLIBS_SAFE() {
-  return CLUBS;
-}
-
 export function isoLocalNextHour(offsetHours = 1) {
   const now = new Date();
   now.setMinutes(0, 0, 0);
@@ -53,3 +47,5 @@ export async function safeFetch(url: string, options?: RequestInit) {
 
   return res.json();
 }
+
+export const toUtc = (local: string) => new Date(local).toISOString();

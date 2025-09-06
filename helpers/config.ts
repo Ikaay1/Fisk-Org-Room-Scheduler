@@ -23,9 +23,9 @@ export type EventDraft = {
   title: string;
   clubId: string;
   description?: string;
-  startAt: string; // ISO
-  endAt: string; // ISO
-  expected: number;
+  startAt: string;
+  endAt: string;
+  minCapacity: number;
   roomId?: string;
 };
 

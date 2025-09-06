@@ -141,6 +141,20 @@ exports.Prisma.ClubScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.EventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  minCapacity: 'minCapacity',
+  startAt: 'startAt',
+  endAt: 'endAt',
+  creatorId: 'creatorId',
+  clubId: 'clubId',
+  roomId: 'roomId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -155,7 +169,8 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Room: 'Room',
-  Club: 'Club'
+  Club: 'Club',
+  Event: 'Event'
 };
 
 /**

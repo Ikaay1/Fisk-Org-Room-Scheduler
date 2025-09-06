@@ -1,4 +1,4 @@
-import { fmtTimeRange } from "@/helpers/utils";
+import { fmtTimeRange, safeFetch } from "@/helpers/utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DoorOpen, Loader2 } from "lucide-react";
@@ -11,7 +11,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import EventForm from "./EventForm";
-import { Club } from "@/helpers/config";
+import { Club, EventDraft } from "@/helpers/config";
+import { toast } from "sonner";
 
 function BookRoomButton({
   roomId,
@@ -20,6 +21,7 @@ function BookRoomButton({
   disabled,
   capacity,
   clubs,
+  creatorId,
 }: {
   roomId: string;
   startAt: string;
@@ -27,9 +29,30 @@ function BookRoomButton({
   disabled?: boolean;
   capacity: number;
   clubs: Club[];
+  creatorId: string;
 }) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const handleBookRoom = async (draft: EventDraft) => {
+    setLoading(true);
+    try {
+      await safeFetch("/api/event/create-event", {
+        method: "POST",
+        body: JSON.stringify({
+          ...draft,
+          roomId,
+          creatorId,
+        }),
+      });
+      toast.success("Event created successfully :)");
+    } catch (e: any) {
+      console.log("Here", e);
+      toast.error(e?.message || "Could not create event");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -46,14 +69,16 @@ function BookRoomButton({
           </DialogDescription>
         </DialogHeader>
         <EventForm
-          onSubmit={(draft) => {
-            console.log("create draft", draft);
-            setOpen(false);
+          onSubmit={async (draft) => {
+            handleBookRoom(draft).then(() => {
+              setOpen(false);
+            });
           }}
           startAt={startAt}
           endAt={endAt}
           capacity={capacity}
           clubs={clubs}
+          loading={loading}
         />
       </DialogContent>
     </Dialog>

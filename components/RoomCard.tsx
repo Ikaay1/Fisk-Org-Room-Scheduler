@@ -5,7 +5,7 @@ import { CapacityBar, FeaturePill } from "./Utilities";
 import { fmtTimeRange } from "@/helpers/utils";
 import BookRoomButton from "./BookRoomButton";
 import { motion } from "framer-motion";
-import { Club, Room } from "@/helpers/config";
+import { Club, Room, User } from "@/helpers/config";
 
 function RoomCard({
   room,
@@ -13,12 +13,14 @@ function RoomCard({
   endAt,
   capacity,
   clubs,
+  user,
 }: {
   room: Room;
   startAt: string;
   endAt: string;
   capacity: number;
   clubs: Club[];
+  user: User;
 }) {
   const free = room.isFree;
   console.log(room);
@@ -64,6 +66,7 @@ function RoomCard({
               endAt={endAt}
               capacity={capacity}
               clubs={clubs}
+              creatorId={user.id}
             />
           </div>
         </CardContent>

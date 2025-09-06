@@ -9,14 +9,16 @@ import { Clock, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { isoLocalNextHour } from "@/helpers/utils";
-import { Club, Room, RoomFeature } from "@/helpers/config";
+import { Club, Room, RoomFeature, User } from "@/helpers/config";
 
 export default function Home({
   rooms,
   clubs,
+  user,
 }: {
   rooms: Room[];
   clubs: Club[];
+  user: User;
 }) {
   const [q, setQ] = useState("");
   const [capacity, setCapacity] = useState(10);
@@ -63,6 +65,7 @@ export default function Home({
           endAt={endAt}
           capacity={capacity}
           clubs={clubs}
+          user={user}
         />
       </div>
 
