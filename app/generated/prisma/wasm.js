@@ -132,8 +132,7 @@ exports.Prisma.RoomScalarFieldEnum = {
   building: 'building',
   features: 'features',
   roomNumber: 'roomNumber',
-  capacity: 'capacity',
-  isFree: 'isFree'
+  capacity: 'capacity'
 };
 
 exports.Prisma.ClubScalarFieldEnum = {

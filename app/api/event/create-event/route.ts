@@ -17,10 +17,5 @@ export async function POST(req: Request) {
     },
   });
 
-  await prisma.room.update({
-    where: { id: body.roomId },
-    data: { isFree: false },
-  });
-
   return NextResponse.json({ ok: true, room: newEvent });
 }

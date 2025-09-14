@@ -1,6 +1,5 @@
 "use client";
 
-import AppShell from "@/components/AppShell";
 import AvailabilityGrid from "@/components/AvailabilityGrid";
 import FiltersBar from "@/components/FiltersBar";
 import { useDebounced } from "@/components/Utilities";
@@ -9,22 +8,24 @@ import { Clock, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { isoLocalNextHour } from "@/helpers/utils";
-import { Club, Room, RoomFeature, User } from "@/helpers/config";
+import { Club, ClubEvent, Room, RoomFeature, User } from "@/helpers/config";
 
 export default function Home({
   rooms,
   clubs,
   user,
+  events,
 }: {
   rooms: Room[];
   clubs: Club[];
   user: User;
+  events: ClubEvent[];
 }) {
   const [q, setQ] = useState("");
   const [capacity, setCapacity] = useState(10);
   const [features, setFeatures] = useState<RoomFeature[]>([]);
-  const [startAt, setStartAt] = useState<string>("");
-  const [endAt, setEndAt] = useState<string>("");
+  const [startAt, setStartAt] = useState(isoLocalNextHour());
+  const [endAt, setEndAt] = useState(isoLocalNextHour(2));
 
   const dq = useDebounced(q);
 
@@ -66,6 +67,7 @@ export default function Home({
           capacity={capacity}
           clubs={clubs}
           user={user}
+          events={events}
         />
       </div>
 
@@ -79,7 +81,7 @@ export default function Home({
               variant="outline"
               className="justify-start gap-2"
               onClick={() => {
-                const s = isoLocalNextHour(1);
+                const s = isoLocalNextHour();
                 const e = isoLocalNextHour(3);
                 setStartAt(s);
                 setEndAt(e);

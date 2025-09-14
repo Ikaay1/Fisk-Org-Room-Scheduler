@@ -21,8 +21,6 @@ export async function POST(req: Request) {
     select: { isVerified: true },
   });
 
-  console.log("user", user);
-
   if (user) {
     return NextResponse.json(
       { ok: false, error: "User already exists" },

@@ -1,4 +1,4 @@
-import { isoLocalNextHour, toUtc } from "@/helpers/utils";
+import { getStringDate, toUtc } from "@/helpers/utils";
 import { useState } from "react";
 import {
   Select,
@@ -24,8 +24,8 @@ function EventForm({
   loading,
 }: {
   onSubmit: (draft: EventDraft) => void;
-  startAt: string;
-  endAt: string;
+  startAt: Date;
+  endAt: Date;
   capacity: number;
   clubs: Club[];
   loading: boolean;
@@ -96,11 +96,15 @@ function EventForm({
         </div>
         <div className="space-y-1.5">
           <Label>Start</Label>
-          <Input disabled type="datetime-local" value={startAt} />
+          <Input
+            disabled
+            type="datetime-local"
+            value={getStringDate(startAt)}
+          />
         </div>
         <div className="space-y-1.5">
           <Label>End</Label>
-          <Input disabled type="datetime-local" value={endAt} />
+          <Input disabled type="datetime-local" value={getStringDate(endAt)} />
         </div>
       </div>
 
@@ -111,7 +115,7 @@ function EventForm({
           disabled={!canSubmit || loading}
         >
           <Plus className="h-4 w-4" />
-          Create draft
+          Create Event
         </Button>
       </DialogFooter>
     </form>

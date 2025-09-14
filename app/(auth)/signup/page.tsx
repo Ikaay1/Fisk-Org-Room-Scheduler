@@ -1,12 +1,13 @@
-import { getUserFromToken } from "@/app/page";
+import AuthLayout from "@/components/AuthLayout";
 import Signup from "@/components/Signup";
-import { redirect } from "next/navigation";
 
 export default async function SignupPage() {
-  const user = await getUserFromToken();
-
-  if (user) {
-    redirect("/");
-  }
-  return <Signup />;
+  return (
+    <AuthLayout
+      title="Sign up"
+      subtitle="Use your @fisk.edu email to create an account."
+    >
+      <Signup />
+    </AuthLayout>
+  );
 }

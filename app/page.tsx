@@ -1,30 +1,13 @@
 import Home from "@/components/Home";
 
-import { cookies } from "next/headers";
-import { jwtVerify } from "jose";
 import { redirect } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { safeFetch } from "@/helpers/utils";
-import { Club, Room } from "@/helpers/config";
+import { Club, ClubEvent, Room } from "@/helpers/config";
+import { getUserFromServerComponent } from "@/lib/auth-server";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-
-export async function getUserFromToken() {
-  const token = (await cookies()).get("token")?.value;
-  if (!token) return null;
-
-  try {
-    const { payload } = await jwtVerify(token, secret);
-    return {
-      id: payload.sub as string,
-      email: payload.email as string,
-    };
-  } catch (err) {
-    return null;
-  }
-}
-
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+export const baseUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 const getRooms = async () => {
   try {
@@ -54,20 +37,30 @@ const getClubs = async () => {
   }
 };
 
+const getEvents = async () => {
+  try {
+    const events: { events: ClubEvent[] } = await safeFetch(
+      `${baseUrl}/api/event/get-events`,
+      {
+        method: "GET",
+      }
+    );
+    return events.events;
+  } catch (err) {
+    return [];
+  }
+};
+
 export default async function HomePage() {
-  const user = await getUserFromToken();
+  const user = await getUserFromServerComponent();
+  if (!user) return;
   const rooms = await getRooms();
   const clubs = await getClubs();
-
-  console.log(clubs);
-
-  if (!user) {
-    redirect("/login");
-  }
+  const events = await getEvents();
 
   return (
-    <AppShell user={user}>
-      <Home user={user} rooms={rooms} clubs={clubs} />
+    <AppShell>
+      <Home user={user} rooms={rooms} clubs={clubs} events={events} />
     </AppShell>
   );
 }

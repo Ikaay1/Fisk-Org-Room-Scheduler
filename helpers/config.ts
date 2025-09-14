@@ -11,7 +11,6 @@ export type Room = {
   roomNumber: string;
   capacity: number;
   features: RoomFeature[];
-  isFree: boolean;
 };
 
 export type Club = {
@@ -27,6 +26,18 @@ export type EventDraft = {
   endAt: string;
   minCapacity: number;
   roomId?: string;
+};
+
+export type ClubEvent = {
+  id: string;
+  title: string;
+  description: string;
+  minCapacity: number;
+  startAt: string;
+  endAt: string;
+  roomId: string;
+  club: Club;
+  room: Room;
 };
 
 export const CLUBS = [

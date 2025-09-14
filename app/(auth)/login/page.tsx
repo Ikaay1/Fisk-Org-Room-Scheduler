@@ -1,12 +1,10 @@
-import { getUserFromToken } from "@/app/page";
+import AuthLayout from "@/components/AuthLayout";
 import Login from "@/components/Login";
-import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
-  const user = await getUserFromToken();
-
-  if (user) {
-    redirect("/");
-  }
-  return <Login />;
+  return (
+    <AuthLayout title="Log in" subtitle="Use your @fisk.edu email to continue.">
+      <Login />
+    </AuthLayout>
+  );
 }

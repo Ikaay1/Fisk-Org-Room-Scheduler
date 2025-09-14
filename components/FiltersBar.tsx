@@ -2,16 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Filter, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { RoomFeature } from "@/helpers/config";
 import MultiFeatureSelect from "./MultiFeatureSelect";
-import { FeaturePill } from "./Utilities";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function FiltersBar(props: {
   q: string;
@@ -20,10 +14,10 @@ function FiltersBar(props: {
   setCapacity: (v: number) => void;
   features: RoomFeature[];
   setFeatures: (v: RoomFeature[]) => void;
-  startAt: string;
-  setStartAt: (v: string) => void;
-  endAt: string;
-  setEndAt: (v: string) => void;
+  startAt: Date;
+  setStartAt: (v: Date) => void;
+  endAt: Date;
+  setEndAt: (v: Date) => void;
 }) {
   const {
     q,
@@ -72,28 +66,27 @@ function FiltersBar(props: {
         <div>
           <Label className="text-xs">Features</Label>
           <MultiFeatureSelect value={features} onChange={setFeatures} />
-          {/* {features.length > 0 && (
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {features.map((f) => (
-                <FeaturePill key={f} feature={f} />
-              ))}
-            </div>
-          )} */}
         </div>
         <div>
           <Label className="text-xs">Start</Label>
-          <Input
-            type="datetime-local"
-            value={startAt}
-            onChange={(e) => setStartAt(e.target.value)}
+          <DatePicker
+            selected={startAt}
+            onChange={(date) => setStartAt(date!)}
+            showTimeSelect
+            minDate={new Date()}
+            dateFormat="Pp"
+            className="text-sm border-1 p-1 rounded"
           />
         </div>
         <div>
           <Label className="text-xs">End</Label>
-          <Input
-            type="datetime-local"
-            value={endAt}
-            onChange={(e) => setEndAt(e.target.value)}
+          <DatePicker
+            selected={endAt}
+            onChange={(date) => setEndAt(date!)}
+            showTimeSelect
+            minDate={new Date()}
+            dateFormat="Pp"
+            className="text-sm border-1 p-1 rounded"
           />
         </div>
       </CardContent>

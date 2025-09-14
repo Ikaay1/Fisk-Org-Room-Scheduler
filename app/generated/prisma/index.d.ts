@@ -2303,7 +2303,6 @@ export namespace Prisma {
     building: string | null
     roomNumber: string | null
     capacity: number | null
-    isFree: boolean | null
   }
 
   export type RoomMaxAggregateOutputType = {
@@ -2311,7 +2310,6 @@ export namespace Prisma {
     building: string | null
     roomNumber: string | null
     capacity: number | null
-    isFree: boolean | null
   }
 
   export type RoomCountAggregateOutputType = {
@@ -2320,7 +2318,6 @@ export namespace Prisma {
     features: number
     roomNumber: number
     capacity: number
-    isFree: number
     _all: number
   }
 
@@ -2338,7 +2335,6 @@ export namespace Prisma {
     building?: true
     roomNumber?: true
     capacity?: true
-    isFree?: true
   }
 
   export type RoomMaxAggregateInputType = {
@@ -2346,7 +2342,6 @@ export namespace Prisma {
     building?: true
     roomNumber?: true
     capacity?: true
-    isFree?: true
   }
 
   export type RoomCountAggregateInputType = {
@@ -2355,7 +2350,6 @@ export namespace Prisma {
     features?: true
     roomNumber?: true
     capacity?: true
-    isFree?: true
     _all?: true
   }
 
@@ -2451,7 +2445,6 @@ export namespace Prisma {
     features: string[]
     roomNumber: string
     capacity: number
-    isFree: boolean
     _count: RoomCountAggregateOutputType | null
     _avg: RoomAvgAggregateOutputType | null
     _sum: RoomSumAggregateOutputType | null
@@ -2479,7 +2472,6 @@ export namespace Prisma {
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-    isFree?: boolean
     events?: boolean | Room$eventsArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["room"]>
@@ -2490,7 +2482,6 @@ export namespace Prisma {
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-    isFree?: boolean
   }, ExtArgs["result"]["room"]>
 
   export type RoomSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2499,7 +2490,6 @@ export namespace Prisma {
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-    isFree?: boolean
   }, ExtArgs["result"]["room"]>
 
   export type RoomSelectScalar = {
@@ -2508,10 +2498,9 @@ export namespace Prisma {
     features?: boolean
     roomNumber?: boolean
     capacity?: boolean
-    isFree?: boolean
   }
 
-  export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "building" | "features" | "roomNumber" | "capacity" | "isFree", ExtArgs["result"]["room"]>
+  export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "building" | "features" | "roomNumber" | "capacity", ExtArgs["result"]["room"]>
   export type RoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Room$eventsArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
@@ -2530,7 +2519,6 @@ export namespace Prisma {
       features: string[]
       roomNumber: string
       capacity: number
-      isFree: boolean
     }, ExtArgs["result"]["room"]>
     composites: {}
   }
@@ -2960,7 +2948,6 @@ export namespace Prisma {
     readonly features: FieldRef<"Room", 'String[]'>
     readonly roomNumber: FieldRef<"Room", 'String'>
     readonly capacity: FieldRef<"Room", 'Int'>
-    readonly isFree: FieldRef<"Room", 'Boolean'>
   }
     
 
@@ -5637,8 +5624,7 @@ export namespace Prisma {
     building: 'building',
     features: 'features',
     roomNumber: 'roomNumber',
-    capacity: 'capacity',
-    isFree: 'isFree'
+    capacity: 'capacity'
   };
 
   export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
@@ -5815,7 +5801,6 @@ export namespace Prisma {
     features?: StringNullableListFilter<"Room">
     roomNumber?: StringFilter<"Room"> | string
     capacity?: IntFilter<"Room"> | number
-    isFree?: BoolFilter<"Room"> | boolean
     events?: EventListRelationFilter
   }
 
@@ -5825,7 +5810,6 @@ export namespace Prisma {
     features?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
-    isFree?: SortOrder
     events?: EventOrderByRelationAggregateInput
   }
 
@@ -5839,7 +5823,6 @@ export namespace Prisma {
     features?: StringNullableListFilter<"Room">
     roomNumber?: StringFilter<"Room"> | string
     capacity?: IntFilter<"Room"> | number
-    isFree?: BoolFilter<"Room"> | boolean
     events?: EventListRelationFilter
   }, "id" | "building_roomNumber">
 
@@ -5849,7 +5832,6 @@ export namespace Prisma {
     features?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
-    isFree?: SortOrder
     _count?: RoomCountOrderByAggregateInput
     _avg?: RoomAvgOrderByAggregateInput
     _max?: RoomMaxOrderByAggregateInput
@@ -5866,7 +5848,6 @@ export namespace Prisma {
     features?: StringNullableListFilter<"Room">
     roomNumber?: StringWithAggregatesFilter<"Room"> | string
     capacity?: IntWithAggregatesFilter<"Room"> | number
-    isFree?: BoolWithAggregatesFilter<"Room"> | boolean
   }
 
   export type ClubWhereInput = {
@@ -6061,7 +6042,6 @@ export namespace Prisma {
     features?: RoomCreatefeaturesInput | string[]
     roomNumber?: string
     capacity: number
-    isFree?: boolean
     events?: EventCreateNestedManyWithoutRoomInput
   }
 
@@ -6071,7 +6051,6 @@ export namespace Prisma {
     features?: RoomCreatefeaturesInput | string[]
     roomNumber?: string
     capacity: number
-    isFree?: boolean
     events?: EventUncheckedCreateNestedManyWithoutRoomInput
   }
 
@@ -6081,7 +6060,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
     events?: EventUpdateManyWithoutRoomNestedInput
   }
 
@@ -6091,7 +6069,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
     events?: EventUncheckedUpdateManyWithoutRoomNestedInput
   }
 
@@ -6101,7 +6078,6 @@ export namespace Prisma {
     features?: RoomCreatefeaturesInput | string[]
     roomNumber?: string
     capacity: number
-    isFree?: boolean
   }
 
   export type RoomUpdateManyMutationInput = {
@@ -6110,7 +6086,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type RoomUncheckedUpdateManyInput = {
@@ -6119,7 +6094,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClubCreateInput = {
@@ -6363,7 +6337,6 @@ export namespace Prisma {
     features?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
-    isFree?: SortOrder
   }
 
   export type RoomAvgOrderByAggregateInput = {
@@ -6375,7 +6348,6 @@ export namespace Prisma {
     building?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
-    isFree?: SortOrder
   }
 
   export type RoomMinOrderByAggregateInput = {
@@ -6383,7 +6355,6 @@ export namespace Prisma {
     building?: SortOrder
     roomNumber?: SortOrder
     capacity?: SortOrder
-    isFree?: SortOrder
   }
 
   export type RoomSumOrderByAggregateInput = {
@@ -7028,7 +6999,6 @@ export namespace Prisma {
     features?: RoomCreatefeaturesInput | string[]
     roomNumber?: string
     capacity: number
-    isFree?: boolean
   }
 
   export type RoomUncheckedCreateWithoutEventsInput = {
@@ -7037,7 +7007,6 @@ export namespace Prisma {
     features?: RoomCreatefeaturesInput | string[]
     roomNumber?: string
     capacity: number
-    isFree?: boolean
   }
 
   export type RoomCreateOrConnectWithoutEventsInput = {
@@ -7108,7 +7077,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type RoomUncheckedUpdateWithoutEventsInput = {
@@ -7117,7 +7085,6 @@ export namespace Prisma {
     features?: RoomUpdatefeaturesInput | string[]
     roomNumber?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
-    isFree?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type EventCreateManyUserInput = {

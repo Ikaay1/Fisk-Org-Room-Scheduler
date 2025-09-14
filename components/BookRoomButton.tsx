@@ -1,7 +1,7 @@
-import { fmtTimeRange, safeFetch } from "@/helpers/utils";
+import { safeFetch } from "@/helpers/utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { DoorOpen, Loader2 } from "lucide-react";
+import { DoorOpen } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +13,7 @@ import {
 import EventForm from "./EventForm";
 import { Club, EventDraft } from "@/helpers/config";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 function BookRoomButton({
   roomId,
@@ -24,8 +25,8 @@ function BookRoomButton({
   creatorId,
 }: {
   roomId: string;
-  startAt: string;
-  endAt: string;
+  startAt: Date;
+  endAt: Date;
   disabled?: boolean;
   capacity: number;
   clubs: Club[];
@@ -33,6 +34,7 @@ function BookRoomButton({
 }) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleBookRoom = async (draft: EventDraft) => {
     setLoading(true);
@@ -46,8 +48,8 @@ function BookRoomButton({
         }),
       });
       toast.success("Event created successfully :)");
+      router.push("/events");
     } catch (e: any) {
-      console.log("Here", e);
       toast.error(e?.message || "Could not create event");
     } finally {
       setLoading(false);

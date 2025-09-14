@@ -1,12 +1,19 @@
-import { getUserFromToken } from "@/app/page";
+import AuthLayout from "@/components/AuthLayout";
 import Otp from "@/components/Otp";
-import { redirect } from "next/navigation";
 
-export default async function OtpPage() {
-  const user = await getUserFromToken();
-
-  if (user) {
-    redirect("/");
-  }
-  return <Otp />;
+export default async function OtpPage({
+  searchParams,
+}: {
+  searchParams: { email?: string };
+}) {
+  return (
+    <AuthLayout
+      title="Enter OTP"
+      subtitle={`We sent a 6-digit code to ${
+        searchParams.email || "your email"
+      }.`}
+    >
+      <Otp />
+    </AuthLayout>
+  );
 }

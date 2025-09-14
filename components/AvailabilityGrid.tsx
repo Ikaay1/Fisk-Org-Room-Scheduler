@@ -1,4 +1,4 @@
-import { Club, Room, User } from "@/helpers/config";
+import { Club, ClubEvent, Room, User } from "@/helpers/config";
 import EmptyState from "./EmptyState";
 import RoomCard from "./RoomCard";
 
@@ -9,13 +9,15 @@ function AvailabilityGrid({
   capacity,
   clubs,
   user,
+  events,
 }: {
   rooms: Room[];
-  startAt: string;
-  endAt: string;
+  startAt: Date;
+  endAt: Date;
   capacity: number;
   clubs: Club[];
   user: User;
+  events: ClubEvent[];
 }) {
   if (!startAt || !endAt) {
     return (
@@ -47,6 +49,7 @@ function AvailabilityGrid({
           capacity={capacity}
           clubs={clubs}
           user={user}
+          events={events}
         />
       ))}
     </div>

@@ -5,7 +5,25 @@ import { CapacityBar, FeaturePill } from "./Utilities";
 import { fmtTimeRange } from "@/helpers/utils";
 import BookRoomButton from "./BookRoomButton";
 import { motion } from "framer-motion";
-import { Club, Room, User } from "@/helpers/config";
+import { Club, ClubEvent, Room, User } from "@/helpers/config";
+
+const notFreeRooms = (events: ClubEvent[], startAt: Date, endAt: Date) => {
+  const rooms = new Set<string>();
+
+  for (const event of events) {
+    const eventStart = new Date(event.startAt);
+    const eventEnd = new Date(event.endAt);
+
+    if (
+      (startAt >= eventStart && startAt <= eventEnd) ||
+      (startAt <= eventStart && endAt <= eventEnd)
+    ) {
+      rooms.add(event.roomId);
+    }
+  }
+
+  return rooms;
+};
 
 function RoomCard({
   room,
@@ -14,16 +32,19 @@ function RoomCard({
   capacity,
   clubs,
   user,
+  events,
 }: {
   room: Room;
-  startAt: string;
-  endAt: string;
+  startAt: Date;
+  endAt: Date;
   capacity: number;
   clubs: Club[];
   user: User;
+  events: ClubEvent[];
 }) {
-  const free = room.isFree;
-  console.log(room);
+  const roomsNotFree = notFreeRooms(events, startAt, endAt);
+  const free = !roomsNotFree.has(room.id);
+
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
       <Card className="h-full">

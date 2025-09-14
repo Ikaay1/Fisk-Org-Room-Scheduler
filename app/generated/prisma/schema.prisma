@@ -23,7 +23,6 @@ model Room {
   features   String[]
   roomNumber String   @default("")
   capacity   Int
-  isFree     Boolean  @default(true)
 
   events Event[]
 

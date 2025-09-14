@@ -16,6 +16,7 @@ import { safeFetch } from "@/helpers/utils";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { User } from "@/helpers/config";
+import Link from "next/link";
 
 function TopNav({ user }: { user: User }) {
   const [loading, setLoading] = useState(false);
@@ -40,18 +41,22 @@ function TopNav({ user }: { user: User }) {
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <DoorOpen className="h-5 w-5" />
-          <span className="font-semibold tracking-tight">Campus Rooms</span>
-          <Badge variant="outline" className="ml-2">
+        <Link href="/">
+          <div className="flex items-center gap-2">
+            <DoorOpen className="h-5 w-5" />
+            <span className="font-semibold tracking-tight">Campus Rooms</span>
+            {/* <Badge variant="outline" className="ml-2">
             MVP
-          </Badge>
-        </div>
+          </Badge> */}
+          </div>
+        </Link>
         <div className="hidden md:flex items-center gap-2">
-          {/* <Button variant="ghost" size="sm" className="gap-2">
-            <CalendarDays className="h-4 w-4" />
-            Calendar
-          </Button> */}
+          <Button asChild variant="ghost" size="sm" className="gap-2">
+            <Link href="/events">
+              <CalendarDays className="h-4 w-4" />
+              My Events
+            </Link>
+          </Button>
           {/* <Button variant="ghost" size="sm" className="gap-2">
             <Settings className="h-4 w-4" />
             Admin
@@ -60,7 +65,7 @@ function TopNav({ user }: { user: User }) {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="relative h-8 w-8 rounded-full p-0"
+                className="relative h-8 w-8 rounded-full p-0 cursor-pointer"
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="./none.png" alt="User" />
