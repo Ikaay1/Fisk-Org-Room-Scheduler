@@ -8,10 +8,10 @@ import AppShell from "@/components/AppShell";
 const getUserEvents = async () => {
   try {
     const events: { events: ClubEvent[] } = await safeFetch(
-      `${baseUrl}/api/event/get-event`,
+      `${baseUrl}/api/event/get-user-events`,
       {
         method: "GET",
-        headers: { cookie: cookies().toString() },
+        headers: { cookie: (await cookies()).toString() },
         cache: "no-store",
       }
     );

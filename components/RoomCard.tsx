@@ -33,6 +33,7 @@ function RoomCard({
   clubs,
   user,
   events,
+  event,
 }: {
   room: Room;
   startAt: Date;
@@ -41,6 +42,7 @@ function RoomCard({
   clubs: Club[];
   user: User;
   events: ClubEvent[];
+  event?: ClubEvent;
 }) {
   const roomsNotFree = notFreeRooms(events, startAt, endAt);
   const free = !roomsNotFree.has(room.id);
@@ -88,6 +90,7 @@ function RoomCard({
               capacity={capacity}
               clubs={clubs}
               creatorId={user.id}
+              event={event}
             />
           </div>
         </CardContent>

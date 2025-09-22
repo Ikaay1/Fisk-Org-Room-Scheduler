@@ -51,16 +51,45 @@ const getEvents = async () => {
   }
 };
 
-export default async function HomePage() {
+const getEvent = async (id: string) => {
+  try {
+    const event: { event: ClubEvent } = await safeFetch(
+      `${baseUrl}/api/event/get-event/${id}`,
+      {
+        method: "GET",
+      }
+    );
+    return event.event;
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ event?: string }>;
+}) {
+  const params = await searchParams;
   const user = await getUserFromServerComponent();
   if (!user) return;
   const rooms = await getRooms();
   const clubs = await getClubs();
   const events = await getEvents();
+  let event: ClubEvent | undefined = undefined;
+  if (params.event) {
+    event = await getEvent(params.event);
+  }
 
   return (
     <AppShell>
-      <Home user={user} rooms={rooms} clubs={clubs} events={events} />
+      <Home
+        user={user}
+        rooms={rooms}
+        clubs={clubs}
+        events={events}
+        event={event}
+      />
     </AppShell>
   );
 }

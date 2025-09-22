@@ -15,17 +15,25 @@ export default function Home({
   clubs,
   user,
   events,
+  event,
 }: {
   rooms: Room[];
   clubs: Club[];
   user: User;
   events: ClubEvent[];
+  event?: ClubEvent;
 }) {
   const [q, setQ] = useState("");
-  const [capacity, setCapacity] = useState(10);
-  const [features, setFeatures] = useState<RoomFeature[]>([]);
-  const [startAt, setStartAt] = useState(isoLocalNextHour());
-  const [endAt, setEndAt] = useState(isoLocalNextHour(2));
+  const [capacity, setCapacity] = useState(event ? event.minCapacity : 10);
+  const [features, setFeatures] = useState<RoomFeature[]>(
+    event ? event.room.features : []
+  );
+  const [startAt, setStartAt] = useState(
+    event ? new Date(event.startAt) : isoLocalNextHour()
+  );
+  const [endAt, setEndAt] = useState(
+    event ? new Date(event.endAt) : isoLocalNextHour(2)
+  );
 
   const dq = useDebounced(q);
 
@@ -68,6 +76,7 @@ export default function Home({
           clubs={clubs}
           user={user}
           events={events}
+          event={event}
         />
       </div>
 

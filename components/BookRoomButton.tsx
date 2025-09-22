@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import EventForm from "./EventForm";
-import { Club, EventDraft } from "@/helpers/config";
+import { Club, ClubEvent, EventDraft } from "@/helpers/config";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -23,6 +23,7 @@ function BookRoomButton({
   capacity,
   clubs,
   creatorId,
+  event,
 }: {
   roomId: string;
   startAt: Date;
@@ -31,6 +32,7 @@ function BookRoomButton({
   capacity: number;
   clubs: Club[];
   creatorId: string;
+  event?: ClubEvent;
 }) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -39,7 +41,7 @@ function BookRoomButton({
   const handleBookRoom = async (draft: EventDraft) => {
     setLoading(true);
     try {
-      await safeFetch("/api/event/create-event", {
+      await safeFetch(`/api/event/create-event/${event ? event.id : "new"}`, {
         method: "POST",
         body: JSON.stringify({
           ...draft,
@@ -60,7 +62,11 @@ function BookRoomButton({
       <DialogTrigger asChild>
         <Button disabled={disabled || loading} className="w-full">
           <DoorOpen className="h-4 w-4 mr-2" />
-          {disabled ? "Unavailable" : "Request booking"}
+          {disabled
+            ? event && event.roomId == roomId
+              ? "Meeting's current"
+              : "Unavailable"
+            : "Request booking"}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
@@ -81,6 +87,7 @@ function BookRoomButton({
           capacity={capacity}
           clubs={clubs}
           loading={loading}
+          event={event}
         />
       </DialogContent>
     </Dialog>

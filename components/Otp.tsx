@@ -35,47 +35,55 @@ export default function Otp() {
   }
 
   return (
-    <div className="space-y-3">
-      <div className="space-y-1.5">
-        <Label>6-digit code</Label>
-        <Input
-          inputMode="numeric"
-          pattern="[0-9]*"
-          maxLength={6}
-          value={code}
-          onChange={(e) =>
-            setCode(e.target.value.replace(/\\D/g, "").slice(0, 6))
-          }
-          placeholder="123456"
-        />
-      </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      <div className="flex gap-2">
-        <Button variant="outline" className="w-1/3" onClick={() => r.back()}>
-          Back
-        </Button>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        submit();
+      }}
+    >
+      <div className="space-y-3">
+        <div className="space-y-1.5">
+          <Label>6-digit code</Label>
+          <Input
+            inputMode="numeric"
+            pattern="[0-9]*"
+            maxLength={6}
+            value={code}
+            onChange={(e) =>
+              setCode(e.target.value.replace(/\\D/g, "").slice(0, 6))
+            }
+            placeholder="123456"
+          />
+        </div>
+        {error && <p className="text-sm text-red-600">{error}</p>}
+        <div className="flex gap-2">
+          <Button variant="outline" className="w-1/3" onClick={() => r.back()}>
+            Back
+          </Button>
+          <Button
+            type="submit"
+            className="w-2/3"
+            disabled={!canSubmit || loading}
+          >
+            {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}{" "}
+            Verify
+          </Button>
+        </div>
         <Button
-          className="w-2/3"
-          disabled={!canSubmit || loading}
-          onClick={submit}
+          onClick={async (e) => {
+            e.preventDefault();
+            if (!email) return;
+            await safeFetch("/api/auth/request-otp", {
+              method: "POST",
+              body: JSON.stringify({ email }),
+            });
+          }}
+          variant="link"
+          className="p-0 h-auto"
         >
-          {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />} Verify
-        </Button>
-      </div>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          if (!email) return;
-          await safeFetch("/api/auth/request-otp", {
-            method: "POST",
-            body: JSON.stringify({ email }),
-          });
-        }}
-      >
-        <Button variant="link" type="submit" className="p-0 h-auto">
           Resend code
         </Button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }

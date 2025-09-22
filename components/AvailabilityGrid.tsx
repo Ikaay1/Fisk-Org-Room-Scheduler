@@ -10,6 +10,7 @@ function AvailabilityGrid({
   clubs,
   user,
   events,
+  event,
 }: {
   rooms: Room[];
   startAt: Date;
@@ -18,6 +19,7 @@ function AvailabilityGrid({
   clubs: Club[];
   user: User;
   events: ClubEvent[];
+  event?: ClubEvent;
 }) {
   if (!startAt || !endAt) {
     return (
@@ -50,6 +52,7 @@ function AvailabilityGrid({
           clubs={clubs}
           user={user}
           events={events}
+          event={event}
         />
       ))}
     </div>

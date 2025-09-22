@@ -36,6 +36,7 @@ export type ClubEvent = {
   startAt: string;
   endAt: string;
   roomId: string;
+  clubId: string;
   club: Club;
   room: Room;
 };

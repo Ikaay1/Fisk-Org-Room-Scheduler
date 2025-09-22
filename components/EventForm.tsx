@@ -11,9 +11,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { DialogFooter } from "@/components/ui/dialog";
-import { Club, EventDraft } from "@/helpers/config";
+import { Club, ClubEvent, EventDraft } from "@/helpers/config";
 
 function EventForm({
   onSubmit,
@@ -22,6 +22,7 @@ function EventForm({
   capacity,
   clubs,
   loading,
+  event,
 }: {
   onSubmit: (draft: EventDraft) => void;
   startAt: Date;
@@ -29,10 +30,15 @@ function EventForm({
   capacity: number;
   clubs: Club[];
   loading: boolean;
+  event?: ClubEvent;
 }) {
-  const [title, setTitle] = useState("");
-  const [clubId, setClubId] = useState(clubs[0]?.id ?? "");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(event ? event.title : "");
+  const [clubId, setClubId] = useState(
+    event ? event.clubId : clubs[0]?.id ?? ""
+  );
+  const [description, setDescription] = useState(
+    event ? event.description : ""
+  );
 
   const canSubmit = title && clubId && new Date(endAt) > new Date(startAt);
 
@@ -114,8 +120,12 @@ function EventForm({
           className="gap-2"
           disabled={!canSubmit || loading}
         >
-          <Plus className="h-4 w-4" />
-          Create Event
+          {loading ? (
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+          ) : (
+            <Plus className="h-4 w-4" />
+          )}
+          {event ? "Update Event" : "Create Event"}
         </Button>
       </DialogFooter>
     </form>

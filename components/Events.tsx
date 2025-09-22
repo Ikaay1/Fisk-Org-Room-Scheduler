@@ -3,11 +3,14 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, MapPin, Users } from "lucide-react";
+import { CalendarDays, MapPin, Trash2, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { ClubEvent } from "@/helpers/config";
+import { useRouter } from "next/navigation";
+import DeleteEventButton from "./DeleteEventButton";
 
 const Events = ({ events }: { events: ClubEvent[] }) => {
+  const router = useRouter();
   return (
     <main className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Booked Events</h1>
@@ -25,15 +28,28 @@ const Events = ({ events }: { events: ClubEvent[] }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Card className="hover:shadow-lg transition">
-                <CardHeader>
-                  <CardTitle className="text-lg">{event.title}</CardTitle>
-                  {event.club && (
-                    <Badge variant="secondary" className="mt-1">
-                      {event.club.name}
-                    </Badge>
-                  )}
+              <Card
+                className="hover:shadow-lg transition relative cursor-pointer"
+                onClick={() => router.push(`/?event=${event.id}`)}
+              >
+                <CardHeader className="flex flex-row items-start justify-between">
+                  <div>
+                    <CardTitle className="text-lg">{event.title}</CardTitle>
+                    {event.club && (
+                      <Badge variant="secondary" className="mt-1">
+                        {event.club.name}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <DeleteEventButton
+                      eventId={event.id}
+                      onDeleted={() => router.refresh()}
+                    />
+                  </div>
                 </CardHeader>
+
                 <CardContent className="text-sm space-y-2">
                   {event.description && (
                     <p className="text-muted-foreground">{event.description}</p>
