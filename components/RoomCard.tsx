@@ -7,7 +7,13 @@ import BookRoomButton from "./BookRoomButton";
 import { motion } from "framer-motion";
 import { Club, ClubEvent, Room, User } from "@/helpers/config";
 
-const notFreeRooms = (events: ClubEvent[], startAt: Date, endAt: Date) => {
+const notFreeRooms = (
+  events: ClubEvent[],
+  startAt: Date,
+  endAt: Date,
+  capacity: number,
+  eventId?: string
+) => {
   const rooms = new Set<string>();
 
   for (const event of events) {
@@ -18,7 +24,15 @@ const notFreeRooms = (events: ClubEvent[], startAt: Date, endAt: Date) => {
       (startAt >= eventStart && startAt <= eventEnd) ||
       (startAt <= eventStart && endAt <= eventEnd)
     ) {
-      rooms.add(event.roomId);
+      if (
+        !eventId ||
+        eventId !== event.id ||
+        (startAt.getTime() === eventStart.getTime() &&
+          endAt.getTime() === eventEnd.getTime() &&
+          capacity === event.minCapacity)
+      ) {
+        rooms.add(event.roomId);
+      }
     }
   }
 
@@ -44,8 +58,15 @@ function RoomCard({
   events: ClubEvent[];
   event?: ClubEvent;
 }) {
-  const roomsNotFree = notFreeRooms(events, startAt, endAt);
+  const roomsNotFree = notFreeRooms(
+    events,
+    startAt,
+    endAt,
+    capacity,
+    event?.id
+  );
   const free = !roomsNotFree.has(room.id);
+  console.log("free", free);
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>

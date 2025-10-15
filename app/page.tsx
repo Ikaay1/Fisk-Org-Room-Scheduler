@@ -72,7 +72,7 @@ export default async function HomePage({
 }) {
   const params = await searchParams;
   const user = await getUserFromServerComponent();
-  if (!user) return;
+  if (!user) redirect("/login");
   const rooms = await getRooms();
   const clubs = await getClubs();
   const events = await getEvents();

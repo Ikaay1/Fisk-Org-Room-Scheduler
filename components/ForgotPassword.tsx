@@ -9,27 +9,26 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { safeFetch } from "@/helpers/utils";
 
-const Login = () => {
+const ForgotPassword = () => {
   const r = useRouter();
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  const canSubmit = isFiskEmail(email) && password.length >= 8;
+  const canSubmit = isFiskEmail(email);
 
   async function submit() {
     setError(null);
     if (!canSubmit) return;
     setLoading(true);
     try {
-      await safeFetch("/api/auth/login", {
+      await safeFetch("/api/auth/confirm-email", {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email }),
       });
-      r.push("/");
+      r.push(`/verify-email?email=${email}`);
     } catch (e: any) {
-      setError(e?.message || "Could not login");
+      setError(e?.message || "Could not send OTP");
     } finally {
       setLoading(false);
     }
@@ -61,40 +60,18 @@ const Login = () => {
             </p>
           )}
         </div>
-        <div className="space-y-1.5">
-          <Label>Password</Label>
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-          />
-          {password && password.length < 8 && (
-            <p className="text-xs text-red-600">Minimum 8 characters.</p>
-          )}
-        </div>
         {error && <p className="text-sm text-red-600">{error}</p>}
         <Button
           type="submit"
           className="w-full"
           disabled={!canSubmit || loading}
         >
-          {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />} Login
+          {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />} Confirm
+          Email
         </Button>
-        <p className="text-sm text-muted-foreground text-center">
-          New here?{" "}
-          <a className="underline" href="/signup">
-            Create an account
-          </a>
-        </p>
-        <p className="text-sm text-muted-foreground text-center">
-          <a className="underline" href="/forgot-password">
-            Forgot Password?
-          </a>
-        </p>
       </div>
     </form>
   );
 };
 
-export default Login;
+export default ForgotPassword;
