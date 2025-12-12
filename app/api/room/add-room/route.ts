@@ -26,7 +26,6 @@ export async function POST(req: Request) {
       roomNumber: body.roomNumber,
       features: body.features,
       capacity: body.capacity,
-      isFree: true,
     },
   });
 
